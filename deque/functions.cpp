@@ -24,12 +24,12 @@ static double mediana(studentai& A)
 //-------------------------------------------------------------------------------------------
 void pazymys_mediana(studentai& A)
 {
-    A.paz_m = 0.4 * mediana(A) + 0.6 * A.egz;
+    A.paz_m = (round ((0.4 * mediana(A) + 0.6 * A.egz) * 100.0)) / 100.0;
 }
 //-------------------------------------------------------------------------------------------
 void pazymys_vidurkis(studentai& A)
 {
-    A.paz_vid = 0.4 * vidurkis(A) + 0.6 * A.egz;
+    A.paz_vid = (round ((0.4 * vidurkis(A) + 0.6 * A.egz) * 100.0)) / 100.0;
 }
 //-------------------------------------------------------------------------------------------
 void iv1(studentai& A)
@@ -132,22 +132,25 @@ double iv4(deque<studentai>& grupe, ofstream& laiko_failas)
         }
         string antrastes;
         getline(fd, antrastes);
-        while (fd >> B.v >> B.pav)
+        grupe.clear(); //??
+        //while (fd >> B.v >> B.pav)
+        while (getline (fd,antrastes))
         {
+            istringstream iss(antrastes);
             B.hw.clear();
-            kiek_paz = 0;
-            while (fd >> nd)
+            iss >> B.v >> B.pav;
+            //kiek_paz = 0;
+            while (iss >> nd)
             {
                 B.hw.push_back(nd);
-                if (fd.peek() == '\n')
+               /* if (fd.peek() == '\n')
                     break;
-                kiek_paz++;
+                kiek_paz++;*/
             }
-            if (kiek_paz > 0)
-            {
-                B.egz = B.hw[kiek_paz - 1];
-                B.hw.pop_back();
-            }
+           if (!B.hw.empty()) {
+            B.egz = B.hw.back();
+            B.hw.pop_back();
+        }
             pazymys_vidurkis(B);
             pazymys_mediana(B);
             grupe.push_back(B);
@@ -245,14 +248,17 @@ void CPU(ofstream& report) {
     }
     cpuFile.close();
 }
+	duration<double> skirtumas;
 
 void Disk(ofstream& report) {
     system("wmic logicaldisk get name, freespace, size > disk_usage.txt");
     std::ifstream diskFile("disk_usage.txt");
     std::string line;
     while (getline(diskFile, line)) {
-        report << "- Disko bûsena: " << line << "\n";
+        report << "- Disko bï¿½sena: " << line << "\n";
     }
     diskFile.close();
 }*/
 
+
+//------------------------------------------------------------------------------------------------------------------------

@@ -22,9 +22,6 @@ static double vidurkis(studentai& A)
 //-------------------------------------------------------------------------------------------
 static double mediana(studentai& A)
 {
-	//double suma = 0;
-    //int sk;
-   // sk = A.hw.size();
     if (A.hw.size() == 0) return 0;
 
     list<double> sorted_hw = A.hw;  // Create a copy to avoid modifying the original
@@ -38,7 +35,6 @@ static double mediana(studentai& A)
         ++slow;
         advance(fast, 2);
     }
-
     // If the number of elements is odd, return the middle element
     if (sorted_hw.size() % 2 == 0 && next(slow) != sorted_hw.end()) {
        // auto next_slow = next(slow);
@@ -53,12 +49,12 @@ static double mediana(studentai& A)
 //-------------------------------------------------------------------------------------------
 void pazymys_mediana(studentai& A)
 {
-    A.paz_m = 0.4 * mediana(A) + 0.6 * A.egz;
+    A.paz_m = (round ((0.4 * mediana(A) + 0.6 * A.egz) * 100.0)) / 100.0;
 }
 //-------------------------------------------------------------------------------------------
 void pazymys_vidurkis(studentai& A)
 {
-    A.paz_vid = 0.4 * vidurkis(A) + 0.6 * A.egz;
+    A.paz_vid = (round ((0.4 * vidurkis(A) + 0.6 * A.egz) * 100.0)) / 100.0;
 }
 //-------------------------------------------------------------------------------------------
 void iv1(studentai& A)
@@ -257,9 +253,11 @@ void CPU(ofstream& report) {
         if (isdigit(line[0])) {
             report << "- CPU naudojimas: " << line << "%\n";
         }
+            break;
     }
     cpuFile.close();
 }
+	duration<double> skirtumas;
 
 void Disk(ofstream& report) {
     system("wmic logicaldisk get name, freespace, size > disk_usage.txt");
@@ -270,6 +268,7 @@ void Disk(ofstream& report) {
     }
     diskFile.close();
 }*/
+
 
 //------------------------------------------------------------------------------------------------------------------------
 double apdorojimo_laikas(high_resolution_clock::time_point start, high_resolution_clock::time_point end)

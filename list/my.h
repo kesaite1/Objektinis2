@@ -40,4 +40,5 @@ using std::uniform_real_distribution;
 using std::ios;
 using std::runtime_error;
 using std::stringstream;
+
 #endif 

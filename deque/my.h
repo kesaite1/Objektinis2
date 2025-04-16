@@ -41,5 +41,6 @@ using std::uniform_real_distribution;
 using std::runtime_error;
 using std::stringstream;
 using std::ios;
+using std::istringstream;
 
 #endif 
