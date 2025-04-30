@@ -1,13 +1,14 @@
 #include "my.h"
 #include "code.h"
+#include "students.h"
 
-static double vidurkis(studentai& A)
+double Studentas:: vidurkis()
 {
     double suma = 0, sk;
-    sk = A.hw.size();
+    sk = A.getHW.size();
     for (int i = 0; i < sk; i++)
     {
-        suma += A.hw[i];
+        suma += A.getHW[i];
     }
     return (sk > 0) ? suma / sk : 0;
 }
@@ -32,56 +33,77 @@ void pazymys_vidurkis(studentai& A)
     A.paz_vid = (round ((0.4 * vidurkis(A) + 0.6 * A.egz) * 100.0)) / 100.0;
 }
 //-------------------------------------------------------------------------------------------
-void iv1(studentai& A)
+void Studentas::iv1()
 {
-    double nd;
-    string t = "taip";
+    int nd, egz;
+    string t = "taip", v, pav;
+    Studentas A;
     cout << "Iveskite studento varda ir pavarde: ";
-    cin >> A.v >> A.pav;
+    cin >> v >> pav;
     cout << "Iveskite studento egzamino pazymi: ";
-    cin >> A.egz;
+    cin >> egz;
 
     while (t != "ne")
     {
         cout << "Iveskite studento namu darbu pazymi: ";
         cin >> nd;
-        A.hw.push_back(nd);
+        A.pazymioPridejimas(nd);
         cout << " Ar norite testi? (taip/ne): ";
         cin >> t;
     }
+
+    A.setVardas(v);
+    A.setPavarde(pav);
+    A.setEgzaminas(egz);
+
 }
 //------------------------------------------------------------------------------------------
-void iv2(studentai& A, mt19937& gen)
+void Studentas::iv2(mt19937& gen)
 {
+    int nd, egz;
+    string v, pav;
+    Studentas B;
     cout << "Iveskite studento varda ir pavarde: ";
-    cin >> A.v >> A.pav;
-    uniform_int_distribution<int> egz(1, 10);
+    cin >> v >> pav;
+    uniform_int_distribution<int> exam(1, 10);
     uniform_int_distribution<int> kiek(1, 50);
-    uniform_real_distribution<double> nd(1.0, 10.0);
-     A.egz = egz(gen);
+    uniform_real_distribution<double> hw(1.0, 10.0);
+     egz = exam(gen);
 
     for (int i = 0; i < kiek(gen); i++)
     {
-        A.hw.push_back(nd(gen));
+        B.pazymioPridejimas(hw(gen));
     }
+    B.setVardas(v);
+    B.setPavarde(pav);
+    B.setEgzaminas(egz);
+
 }
 //------------------------------------------------------------------------------------------
 void iv3(studentai& A, vector <string>& vardai, vector <string>& pavardes, mt19937& gen)
 {
+    int nd, egz;
+    string v, pav;
+    Studentas C;
     uniform_int_distribution<int> kiek_v(0, vardai.size() - 1);
     uniform_int_distribution<int> kiek_pav(0, pavardes.size() - 1);
-    uniform_int_distribution<int> egz(1, 10);
+    uniform_int_distribution<int> exam(1, 10);
     uniform_int_distribution<int> kiek(1, 50);
-    uniform_real_distribution<double> nd(1.0, 10.0);
+    uniform_real_distribution<double> hw(1.0, 10.0);
 	
-    A.v = vardai[kiek_v(gen)];
-	A.pav = pavardes[kiek_pav(gen)];
-    A.egz = egz(gen);
+    v = vardai[kiek_v(gen)];
+	pav = pavardes[kiek_pav(gen)];
+    egz = exam(gen);
 
     for (int i = 0; i < kiek(gen); i++)
     {
-        A.hw.push_back(nd(gen));
+        C.pazymioPridejimas(hw(gen));
     }
+
+    C.setVardas(v);
+    C.setPavarde(pav);
+    C.setEgzaminas(egz);
+    
 }
 //-------------------------------------------------------------------------------------------
 double iv4(vector<studentai>& grupe, ofstream& laiko_failas)

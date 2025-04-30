@@ -100,6 +100,16 @@ Testavimo metu yra testuojamos šios programos operacijos:
 |1,000,000 irasu  |  27.684           |  21.1924            |  26.8105            |
 
 
+**3-oji strategija**
+***Vidutinis programu procesu atlikimo laikas:***
+|Failo dydis      |Vector             |List                 |Deque                |
+|-----------------|-------------------|---------------------|---------------------|
+|1,000 irasu      |   1.14182         |   1.5644            |  1.41839            |
+|10,000 irasu     |   5.72131         |   1.99268           |  1.36497            |
+|100,000 irasu    |   20.9568         |   6.1044            |  3.47975            |
+|1,000,000 irasu  |   41.0175         |   25.4123           |  31.0889            |
+
+
 Taip pat kiekvienos programos veikimo metu yra sugeneruojamas failas su CPU, RAM ir disko apkrovos duomenimis programos testavimo metu.
 
 **Rezultatų pvz.:**

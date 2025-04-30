@@ -1,5 +1,6 @@
 #include "my.h"
 #include "code.h"
+#include "students.h"
 
 int main()
 {
@@ -11,7 +12,7 @@ int main()
     vector <studentai> grupe;
     int iv = 0, sorting = 0, strateg = 0 ;
     string isvestis;
-    studentai  A;
+    Studentas  A;
     vector <string> vardai = { "Emile", "Greta", "Haroldas", "Guste", "Paulius", "Aleksas", "Kristina", "Aidas", "Vasare", "Diana" };
     vector <string> pavardes = { "Jonaitis", "Pavardaite", "Pavardenis", "Adomaitis", "Lapaite", "Apuokas", "Karalaite", "Nausediene" };
 
