@@ -2,35 +2,38 @@
 #include "code.h"
 #include "students.h"
 
-double Studentas:: vidurkis()
+double Studentas::vidurkis() const
 {
-    double suma = 0, sk;
-    sk = A.getHW.size();
-    for (int i = 0; i < sk; i++)
+    double suma = 0;
+   
+    for (double pazymys : hw)
     {
-        suma += A.getHW[i];
+        suma += pazymys;
     }
-    return (sk > 0) ? suma / sk : 0;
+    return !hw.empty() ? suma / hw.size() : 0;
 }
 //-------------------------------------------------------------------------------------------
-static double mediana()
+double Studentas::mediana() const
 {
     int sk;
-    sk = A.hw.size();
-    sort(A.hw.begin(), A.hw.end());
+    sk = hw.size();
+    vector<double> temp = hw; 
+    sort(temp.begin(), temp.end());
     if (sk == 0) return 0;
-    if (sk % 2 == 0)  return (A.hw[sk / 2] + A.hw[(sk / 2) - 1]) / 2.0;
-    else return A.hw[sk / 2];
+    if (sk % 2 == 0)  return (hw[sk / 2] + hw[(sk / 2) - 1]) / 2.0;
+    else return hw[sk / 2];
 }
 //-------------------------------------------------------------------------------------------
-void pazymys_mediana()
+void Studentas::pazymys_mediana()
 {
-    A.paz_m = (round ((0.4 * mediana(A) + 0.6 * A.egz) * 100.0)) / 100.0;
+    int egz = getEgzaminas();
+    setPazM((round ((0.4 * mediana() + 0.6 * egz) * 100.0)) / 100.0);
 }
 //-------------------------------------------------------------------------------------------
-void pazymys_vidurkis()
+void Studentas::pazymys_vidurkis()
 {
-    A.paz_vid = (round ((0.4 * vidurkis(A) + 0.6 * A.egz) * 100.0)) / 100.0;
+    int egz = getEgzaminas();
+    setPazVid((round ((0.4 * vidurkis() + 0.6 * egz) * 100.0)) / 100.0);
 }
 //-------------------------------------------------------------------------------------------
 void Studentas::iv1()

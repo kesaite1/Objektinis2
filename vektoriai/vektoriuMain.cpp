@@ -67,7 +67,7 @@ int main()
             }
             else if (iv == 4)
             {
-                skaitymo_laikas = iv4(grupe, laiko_failas);
+                skaitymo_laikas = A.iv4(grupe, laiko_failas);
             }
 
             else {
@@ -106,7 +106,7 @@ int main()
                         }*/
                         else if (sorting == 1)
                         {
-                            sort(grupe.begin(), grupe.end(), [](const studentai& A, const studentai& B) { return A.paz_vid > B.paz_vid; });
+                            sort(grupe.begin(), grupe.end(), [](const Studentas& A, const Studentas& B) { return A.getPazVid() > B.getPazVid(); });
                         }
                         /*else if (sorting == 5)
                         {
@@ -114,7 +114,7 @@ int main()
                         }*/
                         else if (sorting == 2)
                         {
-                            sort(grupe.begin(), grupe.end(), [](const studentai& A, const studentai& B) { return A.paz_m > B.paz_m; });
+                            sort(grupe.begin(), grupe.end(), [](const Studentas& A, const Studentas& B) { return A.getPazM() > B.getPazM(); });
                         }
                     auto rusiavimo_end = high_resolution_clock::now();
 				    rusiavimo_laikas = apdorojimo_laikas(rusiavimo_start, rusiavimo_end);

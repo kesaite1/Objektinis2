@@ -45,6 +45,8 @@ class Studentas {
     int setEgzaminas(const int& egz) { egzaminas = egz; }
     vector<double> setHw(const vector<double>& nd) { hw = nd; }
 
+   
+
     void pazymioPridejimas(int nd) { 
         if (nd >= 0  && nd <= 10) {
             hw.push_back(nd); }
@@ -57,18 +59,14 @@ class Studentas {
         }
 
     // Methods
-    double vidurkis();
-    double mediana();
-    static void pazymys_mediana();
-    static void pazymys_vidurkis();
+    double vidurkis() const;
+    double mediana() const;
+    void pazymys_mediana();
+    void pazymys_vidurkis();
     void iv1();
     void iv2(mt19937& gen);
     void iv3(vector <string>& vardai, vector <string>& pavardes, mt19937& gen);
     double iv4(vector<Studentas>& grupe, ofstream& laiko_failas);
-    static void generavimas(string failas);
-
-
-
 
 
 
