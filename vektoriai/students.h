@@ -40,10 +40,10 @@ class Studentas {
     //Setters 
     void setVardas(const string& v) { vardas = v; }
     void setPavarde(const string& p) { pavarde = p; }
-    double setPazVid(const double& vid) { paz_vid = vid; }
-    double setPazM(const double& med) { paz_m = med; }
-    int setEgzaminas(const int& egz) { egzaminas = egz; }
-    vector<double> setHw(const vector<double>& nd) { hw = nd; }
+    void setPazVid(const double& vid) { paz_vid = vid; }
+    void setPazM(const double& med) { paz_m = med; }
+    void setEgzaminas(const int& egz) { egzaminas = egz; }
+    void setHw(const vector<double>& nd) { hw = nd; }
 
    
 
@@ -67,8 +67,6 @@ class Studentas {
     void iv2(mt19937& gen);
     void iv3(vector <string>& vardai, vector <string>& pavardes, mt19937& gen);
     double iv4(vector<Studentas>& grupe, ofstream& laiko_failas);
-
-
 
     };
 

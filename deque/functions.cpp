@@ -57,7 +57,7 @@ void iv2(studentai& A, mt19937& gen)
     cin >> A.v >> A.pav;
     uniform_int_distribution<int> egz(1, 10);
     uniform_int_distribution<int> kiek(1, 50);
-    uniform_real_distribution<int> nd(1, 10);
+    uniform_int_distribution<int> nd(1, 10);
      A.egz = egz(gen);
 
     for (int i = 0; i < kiek(gen); i++)
@@ -72,7 +72,7 @@ void iv3(studentai& A, deque <string>& vardai, deque <string>& pavardes, mt19937
     uniform_int_distribution<int> kiek_pav(0, pavardes.size() - 1);
     uniform_int_distribution<int> egz(1, 10);
     uniform_int_distribution<int> kiek(1, 50);
-    uniform_real_distribution<int> nd(1, 10);
+    uniform_int_distribution<int> nd(1, 10);
 	
     A.v = vardai[kiek_v(gen)];
 	A.pav = pavardes[kiek_pav(gen)];
@@ -186,7 +186,7 @@ void generavimas(string failas)
     mt19937 gen(rd1());
     ofstream file(failas);
     uniform_int_distribution<int> kiek(1, 50);
-    uniform_real_distribution<int> nd(1, 10);
+    uniform_int_distribution<int> nd(1, 10);
     uniform_int_distribution<int> egz(1, 10);
     int dydis;
     string userInput;

@@ -141,7 +141,7 @@ int main()
                         auto skirstymas_start = high_resolution_clock::now();
                         if (strateg == 1) {
                             for (const auto& A : grupe) {
-                                if (A.paz_vid >= 5 || A.paz_m >= 5) {
+                                if (A.getPazVid() >= 5 || A.getPazM() >= 5) {
                                     pazangus.push_back(A);
                                 }
                                 else {
@@ -152,7 +152,7 @@ int main()
                         else if (strateg == 2)
                         { 
                             for (int i = grupe.size() - 1; i >= 0; --i) {
-                                if (grupe[i].paz_vid < 5.0 && grupe[i].paz_m < 5.0) {
+                                if (grupe[i].getPazVid() < 5.0 && grupe[i].getPazM() < 5.0) {
                                     nepazangus.push_back(grupe[i]);
                                     grupe.erase(grupe.begin() + i); 
                                 }
@@ -161,9 +161,9 @@ int main()
                         }
                         else if (strateg == 3)
                         {
-                            copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const studentai& A) { return A.paz_vid < 5 && A.paz_m < 5; }); 
+                            copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const Studentas& A) { return A.getPazVid() < 5 && A.getPazM() < 5; }); 
 
-                            grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const studentai& A) { return A.paz_vid < 5 && A.paz_m < 5; }), grupe.end());
+                            grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const Studentas& A) { return A.getPazVid() < 5 && A.getPazM() < 5; }), grupe.end());
 
                             pazangus = grupe;  // Remaining students are "pazangus"
                         }
@@ -201,17 +201,17 @@ int main()
 
                           //  auto isvedimas_start = high_resolution_clock::now();
                             for (const auto& A : pazangus) {
-                                sp << left << setw(15) << A.v;
-                                sp << left << setw(15) << A.pav;
-                                sp << left << setw(18) << fixed << setprecision(2) << A.paz_vid;
-                                sp << fixed << setprecision(2) << A.paz_m << endl;
+                                sp << left << setw(15) << A.getVardas();
+                                sp << left << setw(15) << A.getPavarde();
+                                sp << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
+                                sp << fixed << setprecision(2) << A.getPazM() << endl;
                             }
 
                             for (const auto& A : nepazangus) {
-                                sn << left << setw(15) << A.v;
-                                sn << left << setw(15) << A.pav;
-                                sn << left << setw(18) << fixed << setprecision(2) << A.paz_vid;
-                                sn << fixed << setprecision(2) << A.paz_m << endl;
+                                sn << left << setw(15) << A.getVardas();
+                                sn << left << setw(15) << A.getPavarde();
+                                sn << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
+                                sn << fixed << setprecision(2) << A.getPazM() << endl;
                             }
                             //auto isvedimas_end = high_resolution_clock::now();
                             //isvedimo_laikas = apdorojimo_laikas(isvedimas_start, isvedimas_end);
@@ -230,10 +230,10 @@ int main()
                             // auto isvedimas_start = high_resolution_clock::now();
                             for (const auto& A : pazangus) {
 
-                                cout << left << setw(15) << A.v;
-                                cout << left << setw(15) << A.pav;
-                                cout << left << setw(18) << fixed << setprecision(2) << A.paz_vid;
-                                cout << fixed << setprecision(2) << A.paz_m << endl;
+                                cout << left << setw(15) << A.getVardas();
+                                cout << left << setw(15) << A.getPavarde();
+                                cout << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
+                                cout << fixed << setprecision(2) << A.getPazM() << endl;
 
                             }
                             cout << "-----------------------------------------------------------------\n";
@@ -241,10 +241,10 @@ int main()
                             cout << "-----------------------------------------------------------------\n";
                             for (const auto& A : nepazangus) {
 
-                                cout << left << setw(15) << A.v;
-                                cout << left << setw(15) << A.pav;
-                                cout << left << setw(18) << fixed << setprecision(2) << A.paz_vid;
-                                cout << fixed << setprecision(2) << A.paz_m << endl;
+                                cout << left << setw(15) << A.getVardas();
+                                cout << left << setw(15) << A.getPavarde();
+                                cout << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
+                                cout << fixed << setprecision(2) << A.getPazM() << endl;
                             }
                             cout << "-----------------------------------------------------------------\n";
                             //auto isvedimas_end = high_resolution_clock::now();
