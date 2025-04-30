@@ -149,21 +149,23 @@ int main()
                             }
                         }
                         else if (strateg == 2) {
-                            auto partition_point = partition(grupe.begin(), grupe.end(), [](const studentai& A) { return A.paz_vid >= 5 || A.paz_m >= 5; }); // Move "varg�iukai" to the end
-                            nepazangus.assign(partition_point, grupe.end()); // Move "varg�iukai" to the separate container
-                            grupe.erase(partition_point, grupe.end()); // Erase "varg�iukai" from the original container in one step
-
-                            pazangus = grupe;  // Remaining students are "pazangus"
+                            for (int i = grupe.size() - 1; i >= 0; --i) {
+                                if (grupe[i].paz_vid < 5.0 && grupe[i].paz_m < 5.0) {
+                                    nepazangus.push_back(grupe[i]);
+                                    grupe.erase(grupe.begin() + i); 
+                                }
+                            }
+                            pazangus = grupe;
                         }
-                        else {
+                        else if (strateg == 3) {
                             copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const studentai& A) { return A.paz_vid < 5 && A.paz_m < 5; }); // Copy "varg�iukai" to `nepazangus` using `std::copy_if`
                             grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const studentai& A) { return A.paz_vid < 5 && A.paz_m < 5; }), grupe.end()); // Remove "varg�iukai" from `grupe` using `std::remove_if` + `erase`
 
-                            pazangus = grupe;  // Remaining students are "pazangus"
+                            pazangus = grupe;  // like studentai yra "pazangus"
                         }
                 auto skirstymas_end = high_resolution_clock::now();
                 skirstymo_laikas = apdorojimo_laikas(skirstymas_start, skirstymas_end);
-                laiko_failas << "Studentu skirstymo i dvi grupes "<< strateg << " strategija " << "laikas: " << skirstymo_laikas << endl;
+                laiko_failas << "Studentu skirstymo i dvi grupes "<< strateg << " strategija laikas: " << skirstymo_laikas << endl;
                 break;
                     }
                     catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }

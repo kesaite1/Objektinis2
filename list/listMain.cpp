@@ -127,17 +127,17 @@ int main()
 
                 while (true) {
                     try {
-                        cout << "Pasirinkite studentu skirstymo strategija 1-2: ";
+                        cout << "Pasirinkite studentu skirstymo strategija 1-3: ";
                         cin >> strateg;
 
                         if (cin.fail()) {
                             cin.clear();
                             cin.ignore(1000, '\n');
-                            throw invalid_argument(" Neteisinga ivestis! Iveskite skaiciu nuo 1 iki 2.");
+                            throw invalid_argument(" Neteisinga ivestis! Iveskite skaiciu nuo 1 iki 3.");
                         }
-                        if (strateg < 1 || strateg > 2) {
+                        if (strateg < 1 || strateg > 3) {
 
-                            throw out_of_range(" Neteisinga ivestis! Iveskite skaiciu nuo 1 iki 2.");
+                            throw out_of_range(" Neteisinga ivestis! Iveskite skaiciu nuo 1 iki 3.");
                         }
                         auto skirstymas_start = high_resolution_clock::now();
                         if (strateg == 1) {
@@ -154,7 +154,7 @@ int main()
                         }
                         else if (strateg == 2)
                         {
-                            for (list<studentai>::iterator it = grupe.begin(); it != grupe.end();) {
+                            for (auto it = grupe.begin(); it != grupe.end();) {
                                 if (it->paz_vid < 5.0 && it->paz_m < 5.0) {
                                     nepazangus.push_back(*it);
                                     it = grupe.erase(it);
@@ -165,9 +165,18 @@ int main()
                             }
                             pazangus = grupe;
                         }
+                        else if (strateg == 3)
+                        {
+                            copy_if(grupe.begin(), grupe.end(), back_inserter(pazangus), [](const studentai& s) { return s.paz_vid >= 5.0 || s.paz_m >= 5.0;});
+
+                            // Copy all nepazangus (<5) into nepazangus list
+                            copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const studentai& s) { return s.paz_vid < 5.0 && s.paz_m < 5.0;  });
+
+                             grupe.clear();  // optional: clear the original list
+                        }
                         auto skirstymas_end = high_resolution_clock::now();
                         skirstymo_laikas = apdorojimo_laikas(skirstymas_start, skirstymas_end);
-                        laiko_failas << "Studentu skirstymo i dvi grupes laikas strategija " << strateg << " : " << skirstymo_laikas << endl;
+                        laiko_failas << "Studentu skirstymo i dvi grupes "<< strateg << " strategija laikas: " << skirstymo_laikas << endl;
                         break;
                     }
                     catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }

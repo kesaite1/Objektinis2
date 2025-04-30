@@ -85,7 +85,7 @@ void iv2(studentai& A, mt19937& gen)
     uniform_int_distribution<int> kiek(1, 50);
     for (int i = 0; i < kiek(gen); i++)
     {
-		uniform_real_distribution<double> nd(1.0, 10.0);
+		uniform_real_distribution<int> nd(1, 10);
 		A.hw.push_back(nd(gen));
     }
 }
@@ -96,7 +96,7 @@ void iv3(studentai& A, list <string>& vardai, list <string>& pavardes, mt19937& 
     uniform_int_distribution<int> kiek_pav(0, pavardes.size() - 1);
     uniform_int_distribution<int> egz(1, 10);
     uniform_int_distribution<int> kiek(1, 50);
-    uniform_real_distribution<double> nd(1.0, 10.0);
+    uniform_real_distribution<int> nd(1, 10);
     list<string>::iterator vard = next(vardai.begin(), kiek_v(gen));
     A.v = *vard;
     list<string>::iterator pavard = next(pavardes.begin(), kiek_v(gen));
@@ -203,7 +203,7 @@ void generavimas(string failas)
     random_device rd;  
     mt19937 gen(rd());
     uniform_int_distribution<int> sk(1, 50);
-    uniform_real_distribution<double> nd(1.0, 10.0);
+    uniform_real_distribution<int> nd(1, 10);
     uniform_int_distribution<int> egz(1, 10);
     ofstream file(failas);
     int dydis;
@@ -225,7 +225,9 @@ void generavimas(string failas)
         catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }
         catch (const out_of_range& e) { cerr << "Klaida: " << e.what() << endl; }
     }
- 
+
+    file << left << setw(20) << "Vardas" << left << setw(20) << "Pavarde" << left << setw(5) << "Pazymiai + egzamino balas\n";
+    file << "-----------------------------------------------------------------------------\n";
     for (int i = 0; i < dydis; i++)
     {
         file << left << setw(20) << ("Vardas" + to_string(i)) << left << setw(20) << ("Pavarde" + to_string(i));
@@ -264,7 +266,7 @@ void Disk(ofstream& report) {
     std::ifstream diskFile("disk_usage.txt");
     std::string line;
     while (getline(diskFile, line)) {
-        report << "- Disko bûsena: " << line << "\n";
+        report << "- Disko bï¿½sena: " << line << "\n";
     }
     diskFile.close();
 }*/

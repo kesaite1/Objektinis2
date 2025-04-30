@@ -13,7 +13,7 @@ double Studentas:: vidurkis()
     return (sk > 0) ? suma / sk : 0;
 }
 //-------------------------------------------------------------------------------------------
-static double mediana(studentai& A)
+static double mediana()
 {
     int sk;
     sk = A.hw.size();
@@ -23,12 +23,12 @@ static double mediana(studentai& A)
     else return A.hw[sk / 2];
 }
 //-------------------------------------------------------------------------------------------
-void pazymys_mediana(studentai& A)
+void pazymys_mediana()
 {
     A.paz_m = (round ((0.4 * mediana(A) + 0.6 * A.egz) * 100.0)) / 100.0;
 }
 //-------------------------------------------------------------------------------------------
-void pazymys_vidurkis(studentai& A)
+void pazymys_vidurkis()
 {
     A.paz_vid = (round ((0.4 * vidurkis(A) + 0.6 * A.egz) * 100.0)) / 100.0;
 }
@@ -37,7 +37,6 @@ void Studentas::iv1()
 {
     int nd, egz;
     string t = "taip", v, pav;
-    Studentas A;
     cout << "Iveskite studento varda ir pavarde: ";
     cin >> v >> pav;
     cout << "Iveskite studento egzamino pazymi: ";
@@ -47,14 +46,14 @@ void Studentas::iv1()
     {
         cout << "Iveskite studento namu darbu pazymi: ";
         cin >> nd;
-        A.pazymioPridejimas(nd);
+        pazymioPridejimas(nd);
         cout << " Ar norite testi? (taip/ne): ";
         cin >> t;
     }
 
-    A.setVardas(v);
-    A.setPavarde(pav);
-    A.setEgzaminas(egz);
+    setVardas(v);
+    setPavarde(pav);
+    setEgzaminas(egz);
 
 }
 //------------------------------------------------------------------------------------------
@@ -62,34 +61,32 @@ void Studentas::iv2(mt19937& gen)
 {
     int nd, egz;
     string v, pav;
-    Studentas B;
     cout << "Iveskite studento varda ir pavarde: ";
     cin >> v >> pav;
     uniform_int_distribution<int> exam(1, 10);
     uniform_int_distribution<int> kiek(1, 50);
-    uniform_real_distribution<double> hw(1.0, 10.0);
+    uniform_real_distribution<int> hw(1, 10);
      egz = exam(gen);
 
     for (int i = 0; i < kiek(gen); i++)
     {
-        B.pazymioPridejimas(hw(gen));
+        pazymioPridejimas(hw(gen));
     }
-    B.setVardas(v);
-    B.setPavarde(pav);
-    B.setEgzaminas(egz);
+    setVardas(v);
+    setPavarde(pav);
+    setEgzaminas(egz);
 
 }
 //------------------------------------------------------------------------------------------
-void iv3(studentai& A, vector <string>& vardai, vector <string>& pavardes, mt19937& gen)
+void Studentas::iv3(vector <string>& vardai, vector <string>& pavardes, mt19937& gen)
 {
     int nd, egz;
     string v, pav;
-    Studentas C;
     uniform_int_distribution<int> kiek_v(0, vardai.size() - 1);
     uniform_int_distribution<int> kiek_pav(0, pavardes.size() - 1);
     uniform_int_distribution<int> exam(1, 10);
     uniform_int_distribution<int> kiek(1, 50);
-    uniform_real_distribution<double> hw(1.0, 10.0);
+    uniform_real_distribution<int> hw(1, 10);
 	
     v = vardai[kiek_v(gen)];
 	pav = pavardes[kiek_pav(gen)];
@@ -97,21 +94,21 @@ void iv3(studentai& A, vector <string>& vardai, vector <string>& pavardes, mt199
 
     for (int i = 0; i < kiek(gen); i++)
     {
-        C.pazymioPridejimas(hw(gen));
+        pazymioPridejimas(hw(gen));
     }
 
-    C.setVardas(v);
-    C.setPavarde(pav);
-    C.setEgzaminas(egz);
-    
+    setVardas(v);
+    setPavarde(pav);
+    setEgzaminas(egz);
+
 }
 //-------------------------------------------------------------------------------------------
-double iv4(vector<studentai>& grupe, ofstream& laiko_failas)
+double Studentas::iv4(vector<Studentas>& grupe, ofstream& laiko_failas)
 {
     string choose, filename;
-    int kiek_paz;
-    double nd, skaitymo_laikas;
-    studentai B;
+    int nd, egz;
+    string v, pav;
+    double skaitymo_laikas;
     while (true) {
     try {
         cout << "Pasirinkite: generuoti nauja faila - g, ar skaityti is egzistuojancio - e: ";
@@ -154,27 +151,25 @@ double iv4(vector<studentai>& grupe, ofstream& laiko_failas)
         }
         string antrastes;
         getline(fd, antrastes);
-        grupe.clear(); //??
-        //while (fd >> B.v >> B.pav)
+        grupe.clear();
         while (getline (fd,antrastes))
         {
+            Studentas B;
             istringstream iss(antrastes);
-            B.hw.clear();
-            iss >> B.v >> B.pav;
-            //kiek_paz = 0;
+            //B.hw.clear();
+            iss >> v >> pav;
+            B.setVardas(v);
+            B.setPavarde(pav);
             while (iss >> nd)
             {
-                B.hw.push_back(nd);
-               /* if (fd.peek() == '\n')
-                    break;
-                kiek_paz++;*/
+                B.pazymioPridejimas(nd);
             }
-           if (!B.hw.empty()) {
-            B.egz = B.hw.back();
-            B.hw.pop_back();
+           if (!B.getHw().empty()) {
+            B.setEgzaminas(B.getHw().back());
+            B.istrintiPaskutiniHw();
         }
-            pazymys_vidurkis(B);
-            pazymys_mediana(B);
+            B.pazymys_vidurkis();
+            B.pazymys_mediana();
             grupe.push_back(B);
         }
         auto skaitymo_end = high_resolution_clock::now();
@@ -192,7 +187,7 @@ double iv4(vector<studentai>& grupe, ofstream& laiko_failas)
             flaikas = skaitymo_laikas + glaikas;
         }
         else flaikas = skaitymo_laikas;*/
-    
+
         return skaitymo_laikas;
 }
 //------------------------------------------------------------------------------------------------------------------
@@ -208,7 +203,7 @@ void generavimas(string failas)
     mt19937 gen(rd1());
     ofstream file(failas);
     uniform_int_distribution<int> kiek(1, 50);
-    uniform_real_distribution<double> nd(1.0, 10.0);
+    uniform_real_distribution<int> nd(1, 10);
     uniform_int_distribution<int> egz(1, 10);
     int dydis;
     string userInput;
@@ -233,6 +228,8 @@ void generavimas(string failas)
         catch (const out_of_range& e) { cerr << "Klaida: " << e.what() << endl; }
     }
 
+    file << left << setw(20) << "Vardas" << left << setw(20) << "Pavarde" << left << setw(5) << "Pazymiai + egzamino balas\n";
+    file << "-----------------------------------------------------------------------------\n";
     for (int i = 0; i < dydis; i++)
     {
         file << left << setw(20) << ("Vardas" + to_string(i)) << left << setw(20) << ("Pavarde" + to_string(i));

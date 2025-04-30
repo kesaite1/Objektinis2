@@ -7,9 +7,9 @@ int main()
     //ofstream report("sistemos_testavimo_duomenys.txt");
     ofstream laiko_failas("../laikas.txt", ios::app);
     double skirstymo_laikas, rusiavimo_laikas, skaitymo_laikas;
-    vector <studentai> pazangus;
-    vector <studentai> nepazangus;
-    vector <studentai> grupe;
+    vector <Studentas> pazangus;
+    vector <Studentas> nepazangus;
+    vector <Studentas> grupe;
     int iv = 0, sorting = 0, strateg = 0 ;
     string isvestis;
     Studentas  A;
@@ -43,25 +43,25 @@ int main()
             }
             if (iv == 1)
             {
-                iv1(A);
-                pazymys_vidurkis(A);
-                pazymys_mediana(A);
+                A.iv1();
+                A.pazymys_vidurkis();
+                A.pazymys_mediana();
 
                 grupe.push_back(A);
             }
             else if (iv == 2)
             {
-                iv2(A, gen);
-                pazymys_vidurkis(A);
-                pazymys_mediana(A);
+                A.iv2(gen);
+                A.pazymys_vidurkis();
+                A.pazymys_mediana();
 
                 grupe.push_back(A);
             }
             else if (iv == 3)
             {
-                iv3(A, vardai, pavardes, gen);
-                pazymys_vidurkis(A);
-                pazymys_mediana(A);
+                A.iv3(vardai, pavardes, gen);
+                A.pazymys_vidurkis();
+                A.pazymys_mediana();
 
                 grupe.push_back(A);
             }
@@ -150,25 +150,27 @@ int main()
                             }
                         }
                         else if (strateg == 2)
-                        {
-                            auto partition_point = partition(grupe.begin(), grupe.end(), [](const studentai& A) { return A.paz_vid >= 5 || A.paz_m >= 5; }); // Move "varg�iukai" to the end
-                            nepazangus.assign(partition_point, grupe.end()); // Move "varg�iukai" to the separate container
-                            grupe.erase(partition_point, grupe.end()); // Erase "varg�iukai" from the original container in one step
-
-                            pazangus = grupe;  // Remaining students are "pazangus"
+                        { 
+                            for (int i = grupe.size() - 1; i >= 0; --i) {
+                                if (grupe[i].paz_vid < 5.0 && grupe[i].paz_m < 5.0) {
+                                    nepazangus.push_back(grupe[i]);
+                                    grupe.erase(grupe.begin() + i); 
+                                }
+                            }
+                            pazangus = grupe;
                         }
-                        else
+                        else if (strateg == 3)
                         {
-                            copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const studentai& A) { return A.paz_vid < 5 && A.paz_m < 5; }); // Copy "varg�iukai" to `nepazangus` using `std::copy_if`
+                            copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const studentai& A) { return A.paz_vid < 5 && A.paz_m < 5; }); 
 
-                            grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const studentai& A) { return A.paz_vid < 5 && A.paz_m < 5; }), grupe.end()); // Remove "varg�iukai" from `grupe` using `std::remove_if` + `erase`
+                            grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const studentai& A) { return A.paz_vid < 5 && A.paz_m < 5; }), grupe.end());
 
                             pazangus = grupe;  // Remaining students are "pazangus"
                         }
 
                             auto skirstymas_end = high_resolution_clock::now();
                             skirstymo_laikas = apdorojimo_laikas(skirstymas_start, skirstymas_end);
-                            laiko_failas << "Studentu skirstymo i dvi grupes " << strateg << " strategija " << "laikas: " << skirstymo_laikas << endl;
+                            laiko_failas << "Studentu skirstymo i dvi grupes " << strateg << " strategija laikas: " << skirstymo_laikas << endl;
                             break;
                     }
                     catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }

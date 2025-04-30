@@ -52,6 +52,10 @@ class Studentas {
             cout << "Neteisingas pazymys! Iveskite skaiciu nuo 0 iki 10." << endl;
         }}
 
+    void istrintiPaskutiniHw() {
+            if (!hw.empty()) hw.pop_back();
+        }
+
     // Methods
     double vidurkis();
     double mediana();
@@ -59,9 +63,9 @@ class Studentas {
     static void pazymys_vidurkis();
     void iv1();
     void iv2(mt19937& gen);
-    void iv3();
-    double iv4();
-    static void generavimas();
+    void iv3(vector <string>& vardai, vector <string>& pavardes, mt19937& gen);
+    double iv4(vector<Studentas>& grupe, ofstream& laiko_failas);
+    static void generavimas(string failas);
 
 
 
