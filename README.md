@@ -36,6 +36,7 @@ Kode panaudotas išimčių valdymas (angl. Exception Handling), naudojamas try-c
 - *v0.3* - atliekamas ankstesnes kodo versijos reorganizavimas. Funkcijos, nauji duomenu tipai perkeliami i antrastinius (.h) failus ir pan. Implementuojamas isimciu valdymas (angl. Exception Handling).
 - *v0.4* - sukuriama failu generatoriaus funkcija. Implementuojamas studentu skirstymas i dvi grupes pagal ju galutini pazymi: pazangus (galutinis balas >= 5.0 ) ir nepazangus (galutinis balas < 5.0). Suskirstyti studentai yra isvedami i du atskirus naujus failus.
 - *v1.0* - implementuojamos trys skirtingos programos naudojancios skirtingu tipu konteinerius: deque, vector, list. Optimizuojamas studentu skirtymo i dvi grupes realizacija ivedant tris skirtingas strategijas. Parengta programos idiegimo instrukcija ir paruostas cmake CMakeLists.txt failas.
+- *v1.1* - pereinama iš struktūrų duomenų tipo į klasių duomenų tipą. 
 
 
 **Programu paleisties proceso instrukcija**
