@@ -45,7 +45,6 @@ class Studentas {
     void setEgzaminas(const int& egz) { egzaminas = egz; }
     void setHw(const vector<double>& nd) { hw = nd; }
 
-   
 
     void pazymioPridejimas(int nd) { 
         if (nd >= 0  && nd <= 10) {

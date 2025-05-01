@@ -92,26 +92,11 @@ int main()
 
                             throw out_of_range(" Neteisinga ivestis! Iveskite skaiciu nuo 1 iki 2.");
                         }
-                        /*if (sorting == 1)
-                        {
-                            sort(grupe.begin(), grupe.end(), [](const studentai& A, const studentai& B) { return raide(A.v) < raide(B.v); });
-                        }
-                        else if (sorting == 2)
-                        {
-                            sort(grupe.begin(), grupe.end(), [](const studentai& A, const studentai& B) { return raide(A.pav) < raide(B.pav); });
-                        }
-                        else if (sorting == 3)
-                        {
-                            sort(grupe.begin(), grupe.end(), [](const studentai& A, const studentai& B) { return A.paz_vid < B.paz_vid; });
-                        }*/
-                        else if (sorting == 1)
+                    
+                        if (sorting == 1)
                         {
                             sort(grupe.begin(), grupe.end(), [](const Studentas& A, const Studentas& B) { return A.getPazVid() > B.getPazVid(); });
                         }
-                        /*else if (sorting == 5)
-                        {
-                            sort(grupe.begin(), grupe.end(), [](const studentai& A, const studentai& B) { return A.paz_m < B.paz_m; });
-                        }*/
                         else if (sorting == 2)
                         {
                             sort(grupe.begin(), grupe.end(), [](const Studentas& A, const Studentas& B) { return A.getPazM() > B.getPazM(); });
@@ -139,6 +124,7 @@ int main()
                             throw out_of_range(" Neteisinga ivestis! Iveskite skaiciu nuo 1 iki 3.");
                         }
                         auto skirstymas_start = high_resolution_clock::now();
+
                         if (strateg == 1) {
                             for (const auto& A : grupe) {
                                 if (A.getPazVid() >= 5 || A.getPazM() >= 5) {
