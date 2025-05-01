@@ -61,6 +61,7 @@ Testavimo metu yra testuojamos šios programos operacijos:
 2. studentų rikiavimas mazejimo tvarka konteineryje (funkcija sort),
 3. studentų skirstymas  į dvi grupes/kategorijas 
 
+---------------------------------------------------------------------------------------------------------------------------------------------------
 **1-oji strategija:**
 
 ***Programos su vector konteineriais laikai:***
@@ -110,6 +111,7 @@ Testavimo metu yra testuojamos šios programos operacijos:
 |100,000 irasu    |   20.9568         |   6.1044            |  3.47975            |
 |1,000,000 irasu  |   41.0175         |   25.4123           |  31.0889            |
 
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Strukturos ir klases programu spartos palyginimas**
 |Failo dydis      |Struct             |Class                |
@@ -117,7 +119,7 @@ Testavimo metu yra testuojamos šios programos operacijos:
 |100,000          |  20.9568          |  3.50327            |
 |1,000,000        |  41.0175          |  5.69491            |
 
-
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Kompiliatoriaus optimizavimo lygio tyrimas**
 |Optimizacijos flag'as   |Laikas 100,000 irasu  | Laikas 1,000,000 irasu  |
