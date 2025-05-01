@@ -41,7 +41,7 @@ void generavimas(string failas)
     }
 
     file << left << setw(20) << "Vardas" << left << setw(20) << "Pavarde" << left << setw(5) << "Pazymiai + egzamino balas\n";
-    file << "-----------------------------------------------------------------------------\n";
+    file << "----------------------------------------------------------------------------------\n";
     for (int i = 0; i < dydis; i++)
     {
         file << left << setw(20) << ("Vardas" + to_string(i)) << left << setw(20) << ("Pavarde" + to_string(i));
