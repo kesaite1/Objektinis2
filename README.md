@@ -127,9 +127,9 @@ Testavimo metu yra testuojamos šios programos operacijos:
 |-o3                     |   2.64526            |   4.66363               |
 
 
-Isvada: Programos veikimo sparta praktiskai nekito, naudojant skirtingus optimizavimo flag'us. Tačiau didelėse programose sie, is paziuros minimalus skirtumai butu labai svarbus.
+**Isvada:** Programos veikimo sparta praktiskai nekito, naudojant skirtingus optimizavimo flag'us. Tačiau didelėse programose sie, is paziuros minimalus skirtumai butu labai svarbus.
 
-
+--------------------------------------------------------------------------------------------------------------------------------------
 
 Taip pat kiekvienos programos veikimo metu yra sugeneruojamas failas su CPU, RAM ir disko apkrovos duomenimis programos testavimo metu.
 
