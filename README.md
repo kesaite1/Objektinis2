@@ -111,6 +111,26 @@ Testavimo metu yra testuojamos šios programos operacijos:
 |1,000,000 irasu  |   41.0175         |   25.4123           |  31.0889            |
 
 
+**Strukturos ir klases programu spartos palyginimas**
+|Failo dydis      |Struct             |Class                |
+|-----------------|-------------------|---------------------|
+|100,000          |  20.9568          |  3.50327            |
+|1,000,000        |  41.0175          |  5.69491            |
+
+
+
+**Kompiliatoriaus optimizavimo lygio tyrimas**
+|Optimizacijos flag'as   |Laikas 100,000 irasu  | Laikas 1,000,000 irasu  |
+|------------------------|----------------------|-------------------------|
+|-o1                     |   3.51606            |   4.68643               |
+|-o2                     |   2.62769            |   4.96555               |
+|-o3                     |   2.64526            |   4.66363               |
+
+
+Isvada: Programos veikimo sparta praktiskai nekito, naudojant skirtingus optimizavimo flag'us. Tačiau didelėse programose sie, is paziuros minimalus skirtumai butu labai svarbus.
+
+
+
 Taip pat kiekvienos programos veikimo metu yra sugeneruojamas failas su CPU, RAM ir disko apkrovos duomenimis programos testavimo metu.
 
 **Rezultatų pvz.:**
