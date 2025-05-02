@@ -61,6 +61,10 @@ class Studentas {
             return *this;
         }
 
+    //Input and output operations
+    friend ostream& operator<<(ostream& os, const Studentas& s);
+    friend istream& operator>>(istream& is, Studentas& s);
+
     // Getters
     string getVardas() const { return vardas; }
     string getPavarde() const { return pavarde; }
