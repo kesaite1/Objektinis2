@@ -2,6 +2,28 @@
 #include "code.h"
 #include "students.h"
 
+ostream& operator<<(ostream& os, const Studentas& s) {
+    os << s.vardas << " " << s.pavarde << " ";
+    for (double grade : s.hw) {
+        os << grade << " ";
+    }
+    os << s.egzaminas;
+    return os;
+}
+
+istream& operator>>(istream& is, Studentas& s) {
+    is >> s.vardas >> s.pavarde;
+    s.hw.clear();  // ensure it's empty
+    double grade;
+    while (is >> grade) {
+        if (grade == -1) break;  // sentinel value to stop reading hw
+        s.hw.push_back(grade);
+    }
+    is.clear();  // clear fail state after -1
+    is >> s.egzaminas;
+    return is;
+}
+
 
 double Studentas::vidurkis() const
 {
