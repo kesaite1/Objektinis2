@@ -23,10 +23,42 @@ class Studentas {
         : vardas(""), pavarde(""), egzaminas(0), paz_m(0), paz_vid(0) {}
         
         Studentas(const string& vardas, const string& pavarde, const vector<double>& hw, int egzaminas)
-        : vardas(vardas), pavarde(pavarde), hw(hw), egzaminas(egzaminas) {
-        
-            //pazymys_mediana();
-           // pazymys_vidurkis();
+        : vardas(vardas), pavarde(pavarde), hw(hw), egzaminas(egzaminas) {}
+
+        ~Studentas() {}
+
+        Studentas(const Studentas& other) 
+        : vardas(other.vardas), pavarde(other.pavarde), 
+        egzaminas(other.egzaminas), hw(other.hw),
+         paz_m(other.paz_m), paz_vid(other.paz_vid){}
+
+        Studentas& operator=(const Studentas& other) {
+            if (this != &other) {
+                vardas = other.vardas;
+                pavarde = other.pavarde;
+                hw = other.hw;
+                egzaminas = other.egzaminas;
+                paz_m = other.paz_m;
+                paz_vid = other.paz_vid;
+            }
+            return *this;
+        }
+
+        Studentas(Studentas&& other) noexcept
+        : vardas(move(other.vardas)), pavarde(move(other.pavarde)),
+         hw(move(other.hw)), egzaminas(other.egzaminas),
+        paz_m(other.paz_m), paz_vid(other.paz_vid) {}
+
+        Studentas& operator=(Studentas&& other) noexcept {
+            if (this != &other) {
+                vardas = move(other.vardas);
+                pavarde = move(other.pavarde);
+                hw = move(other.hw);
+                egzaminas = other.egzaminas;
+                paz_m = other.paz_m;
+                paz_vid = other.paz_vid;
+            }
+            return *this;
         }
 
     // Getters

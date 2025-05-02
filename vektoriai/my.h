@@ -45,6 +45,7 @@ using std::copy_if;
 using std::back_inserter;
 using std::remove_if;
 using std::istringstream;
+using std::move;
 
 
 #endif 
