@@ -2,12 +2,11 @@
 #include "code.h"
 #include "students.h"
 
-ostream& operator<<(ostream& os, const Studentas& s) {
-    os << s.vardas << " " << s.pavarde << " ";
-    for (double grade : s.hw) {
-        os << grade << " ";
-    }
-    os << s.egzaminas;
+ostream& operator<<(ostream& os, const Studentas& A) {
+    os << left << setw(15) << A.getVardas();
+    os << left << setw(15) << A.getPavarde();
+    os << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
+    os << fixed << setprecision(2) << A.getPazM() << endl;
     return os;
 }
 

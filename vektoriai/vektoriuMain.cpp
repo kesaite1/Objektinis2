@@ -181,23 +181,17 @@ int main()
                             ofstream sn("nepazangus.txt");
 
                             sp << left << setw(15) << "Vardas" << left << setw(15) << "Pavarde" << left << setw(18) << "Galutinis (vid.)" << "Galutinis (med.)\n";
-                            sp << "-----------------------------------------------------------------" << endl;
+                            sp << "-----------------------------------------------------------------\n";
                             sn << left << setw(15) << "Vardas" << left << setw(15) << "Pavarde" << left << setw(18) << "Galutinis (vid.)" << "Galutinis (med.)\n";
                             sn << "-----------------------------------------------------------------\n";
 
                           //  auto isvedimas_start = high_resolution_clock::now();
                             for (const auto& A : pazangus) {
-                                sp << left << setw(15) << A.getVardas();
-                                sp << left << setw(15) << A.getPavarde();
-                                sp << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
-                                sp << fixed << setprecision(2) << A.getPazM() << endl;
+                                sp << A;
                             }
 
                             for (const auto& A : nepazangus) {
-                                sn << left << setw(15) << A.getVardas();
-                                sn << left << setw(15) << A.getPavarde();
-                                sn << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
-                                sn << fixed << setprecision(2) << A.getPazM() << endl;
+                                sn << A;
                             }
                             //auto isvedimas_end = high_resolution_clock::now();
                             //isvedimo_laikas = apdorojimo_laikas(isvedimas_start, isvedimas_end);
@@ -216,21 +210,14 @@ int main()
                             // auto isvedimas_start = high_resolution_clock::now();
                             for (const auto& A : pazangus) {
 
-                                cout << left << setw(15) << A.getVardas();
-                                cout << left << setw(15) << A.getPavarde();
-                                cout << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
-                                cout << fixed << setprecision(2) << A.getPazM() << endl;
-
+                                cout << A;
                             }
                             cout << "-----------------------------------------------------------------\n";
                             cout << "Nepazangus studentai: \n";
                             cout << "-----------------------------------------------------------------\n";
                             for (const auto& A : nepazangus) {
 
-                                cout << left << setw(15) << A.getVardas();
-                                cout << left << setw(15) << A.getPavarde();
-                                cout << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
-                                cout << fixed << setprecision(2) << A.getPazM() << endl;
+                                cout << A;
                             }
                             cout << "-----------------------------------------------------------------\n";
                             //auto isvedimas_end = high_resolution_clock::now();
@@ -268,6 +255,7 @@ int main()
      Disk(report);
      report.close();*/
     laiko_failas.close();
+    system("pause");
     return 0;
 }
 
