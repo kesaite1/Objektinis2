@@ -10,16 +10,22 @@ ostream& operator<<(ostream& os, const Studentas& A) {
     return os;
 }
 
-istream& operator>>(istream& is, Studentas& s) {
-    is >> s.vardas >> s.pavarde;
-    s.hw.clear();  // ensure it's empty
-    double grade;
-    while (is >> grade) {
-        if (grade == -1) break;  // sentinel value to stop reading hw
-        s.hw.push_back(grade);
-    }
-    is.clear();  // clear fail state after -1
-    is >> s.egzaminas;
+istream& operator>>(istream& is, Studentas& B) {
+    string v, pav;
+    int nd, egz;
+        
+            is >> v >> pav;
+            B.setVardas(v);
+            B.setPavarde(pav);
+            while (is >> nd)
+            {
+                B.pazymioPridejimas(nd);
+            }
+           if (!B.getHw().empty()) {
+            B.setEgzaminas(B.getHw().back());
+            B.istrintiPaskutiniHw();
+        }
+
     return is;
 }
 
@@ -182,17 +188,8 @@ double Studentas::iv4(vector<Studentas>& grupe, ofstream& laiko_failas)
             Studentas B;
             istringstream iss(antrastes);
             //B.hw.clear();
-            iss >> v >> pav;
-            B.setVardas(v);
-            B.setPavarde(pav);
-            while (iss >> nd)
-            {
-                B.pazymioPridejimas(nd);
-            }
-           if (!B.getHw().empty()) {
-            B.setEgzaminas(B.getHw().back());
-            B.istrintiPaskutiniHw();
-        }
+            iss >> B;
+           
             B.pazymys_vidurkis();
             B.pazymys_mediana();
             grupe.push_back(B);
