@@ -83,11 +83,12 @@ class Studentas {
 
 
     void pazymioPridejimas(int nd) { 
-        if (nd >= 0  && nd <= 10) {
-            hw.push_back(nd); }
-        else {
-            cout << "Neteisingas pazymys! Iveskite skaiciu nuo 0 iki 10." << endl;
-        }}
+       // if (nd > 0  && nd <= 10) {
+            hw.push_back(nd); //}
+        //else {
+          //  cout << "Neteisingas pazymys! Iveskite skaiciu nuo 0 iki 10." << endl;
+        //}
+    }
 
     void istrintiPaskutiniHw() {
             if (!hw.empty()) hw.pop_back();

@@ -22,8 +22,6 @@ void Studentas::test (vector<Studentas>& grupe)
     assert(abs(S.getPazVid() - expectedVid) < tolerance); // tikrina vidurkį
     assert(abs(S.getPazM() - expectedMed) < tolerance);   // tikrina medianą
 
-    cout << "Metodu testas sekmingas\n";
-
     Studentas copy(S);
     assert(copy.getVardas() == "Vardas");
 
@@ -54,20 +52,35 @@ ostream& operator<<(ostream& os, const Studentas& A) {
 
 istream& operator>>(istream& is, Studentas& B) {
     string v, pav;
-    int nd, egz;
+    int nd;
+    vector<int> laik;
         
             is >> v >> pav;
-            B.setVardas(v);
-            B.setPavarde(pav);
+           
             while (is >> nd)
             {
-                B.pazymioPridejimas(nd);
+               if (nd < 1 || nd > 10) {
+                    throw out_of_range("Ivestas pazymys nera tarp 1 ir 10! ");
+                }
+                laik.push_back(nd);
             }
-           if (!B.getHw().empty()) {
-            B.setEgzaminas(B.getHw().back());
-            B.istrintiPaskutiniHw();
-        }
 
+            if (is.fail() && !is.eof()) {
+                // means it failed due to bad input, not end-of-stream
+                throw runtime_error("Neteisingas formatas. Iveskite tik skaicius.");
+            }
+
+            if (laik.empty()) {
+                throw logic_error("Nera pazymiu!");
+            }
+
+            B.setVardas(v);
+            B.setPavarde(pav);
+            for (size_t i = 0; i < laik.size() - 1; ++i) {
+                B.pazymioPridejimas(laik[i]);
+            }
+            B.setEgzaminas(laik.back());
+    
     return is;
 }
 
@@ -109,24 +122,28 @@ void Studentas::pazymys_vidurkis()
 void Studentas::iv1()
 {
     int nd, egz;
-    string t = "taip", v, pav;
-    cout << "Iveskite studento varda ir pavarde: ";
-    cin >> v >> pav;
-    cout << "Iveskite studento egzamino pazymi: ";
-    cin >> egz;
+    string v, pav, line;
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+    while(true){
+        try{
+        cout <<"----------------------------------------------------------------------------------------------------------\n";   
+        cout << "Iveskite studento varda, pavarde, visus namu darbu ir egzamino pazymi (noredami baigti paspauskite ENTER) \n";
+        cout << "Pvz.: Jonas Jonaitis 10 4 7 8 5 9 \n";
+        cout << "> ";
 
-    while (t != "ne")
-    {
-        cout << "Iveskite studento namu darbu pazymi: ";
-        cin >> nd;
-        pazymioPridejimas(nd);
-        cout << " Ar norite testi? (taip/ne): ";
-        cin >> t;
+    getline(cin, line);
+    if (line.empty()) {
+        throw logic_error("Tuscia ivestis.");
     }
+    istringstream iss(line);
+    Studentas laik;
+    iss >> laik;
 
-    setVardas(v);
-    setPavarde(pav);
-    setEgzaminas(egz);
+    *this = laik; // kopijuojame laik i this
+    break; // jei viskas gerai, nutraukiame cikla
+        }
+        catch (const exception& e) { cerr << "Klaida: " << e.what() << " Iveskite studento duomenis is naujo.\n"; }
+    }
 }
 //------------------------------------------------------------------------------------------
 void Studentas::iv2(mt19937& gen)

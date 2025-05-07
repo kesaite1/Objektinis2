@@ -51,5 +51,6 @@ using std::ostream;
 using std::istream;
 using std::getline;
 using std::abs;
+using std::logic_error;
 
 #endif 

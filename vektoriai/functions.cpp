@@ -50,6 +50,7 @@ void generavimas(string failas)
         {
             file << fixed << setprecision(2) << left << setw(5) << nd(gen);
         }
+        
         file << egz(gen) << endl;
     }
     file.close();

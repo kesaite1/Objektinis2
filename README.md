@@ -172,6 +172,15 @@ FreeSpace    Name  Size
 Remiantis programos operacijų laikais, efektyviausiai veikianti programa naudoja deque konteinerius, o mažiausiai efektyvi programa naudoja vector konteinerius. (Galimi testavimo neatitikimai, kurie priklauso nuo sistemos parametru).
 
 
+**Testvimo metodas programos metodu ir konstruktoriu testavimui**
+Metodas *test* ištestuoja programos metodų ir konstruktorių veiklą. Jei viskas veikia - ekrane išspausdinama žinutė: " Visi metodai ir Rule of Five konstruktoriai veikia teisingai", jei aptinkamos klaidos - programos veikla nutrūksta. 
+
+
+**Perdengti operatoriai**
+programoje naudoami perdengti operatoriai įvesčiai ir išvesčiai. Perdengti operatoriai leidžia iš naujo apibrėžti standartinių operatorių veiklą, kai jie yra naudojami su klasės objektais. Tai padaro class'ės naudojimą lengvesnį ir intuityvesnį. 
+
+
+
 
 ![Duomenų įvedimo procesas](https://github.com/user-attachments/assets/26189234-f898-48fd-a30b-62bf3c1a61e5)
 ![Studentų duomenų išvedimas](https://github.com/user-attachments/assets/86870dbd-6b5f-4b90-9b4e-786b5260a189)
