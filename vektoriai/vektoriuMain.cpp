@@ -23,6 +23,12 @@ int main()
 	laiko_failas << "Programos su vector konteineriais laikai:\n";
 	laiko_failas << " " << endl;
 	cout << "VECTOR KONTEINERIU PROGRAMA\n";
+
+    //TEST 
+
+    A.test(grupe); 
+
+    //TEST
     while (iv != 5)
     {
         try {

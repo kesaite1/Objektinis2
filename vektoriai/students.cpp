@@ -2,6 +2,48 @@
 #include "code.h"
 #include "students.h"
 
+
+void Studentas::test (vector<Studentas>& grupe)
+{
+    Studentas S("Vardas", "Pavarde", {2, 3, 6, 7}, 8);
+
+    S.pazymys_vidurkis();  // apskaičiuoja vidurkį
+    S.pazymys_mediana();   // apskaičiuoja medianą
+
+    assert(S.getVardas() == "Vardas");                  // tikrina varda
+    assert(S.getPavarde() == "Pavarde");                // tikrina pavarde
+    assert(S.getHw().size() == 4);
+    assert(S.getEgzaminas() == 8);                      // tikrina egzamino rezultatą
+
+    double expectedVid = 6.6;
+    double expectedMed = 6.6;
+    double tolerance = 0.001;
+
+    assert(abs(S.getPazVid() - expectedVid) < tolerance); // tikrina vidurkį
+    assert(abs(S.getPazM() - expectedMed) < tolerance);   // tikrina medianą
+
+    cout << "Metodu testas sekmingas\n";
+
+    Studentas copy(S);
+    assert(copy.getVardas() == "Vardas");
+
+    Studentas C;
+    C = S;
+    assert(C.getEgzaminas() == 8);
+
+    Studentas laik1("Jonas", "Jonaitis", {10, 9}, 10);
+    Studentas moveConstructor(move(laik1));  // laik1's data moved
+    assert(moveConstructor.getPavarde() == "Jonaitis");
+    
+    Studentas laik2("A", "B", {1, 2, 3}, 5);
+    Studentas moveAssigned;
+    moveAssigned = move(laik2);  // laik2's data moved
+    assert(moveAssigned.getEgzaminas() == 5);
+
+    cout << "Visi metodai ir Rule of Five konstruktoriai veikia teisingai\n";
+  
+}
+
 ostream& operator<<(ostream& os, const Studentas& A) {
     os << left << setw(15) << A.getVardas();
     os << left << setw(15) << A.getPavarde();
@@ -85,7 +127,6 @@ void Studentas::iv1()
     setVardas(v);
     setPavarde(pav);
     setEgzaminas(egz);
-
 }
 //------------------------------------------------------------------------------------------
 void Studentas::iv2(mt19937& gen)
@@ -106,7 +147,6 @@ void Studentas::iv2(mt19937& gen)
     setVardas(v);
     setPavarde(pav);
     setEgzaminas(egz);
-
 }
 //------------------------------------------------------------------------------------------
 void Studentas::iv3(vector <string>& vardai, vector <string>& pavardes, mt19937& gen)
@@ -131,7 +171,6 @@ void Studentas::iv3(vector <string>& vardai, vector <string>& pavardes, mt19937&
     setVardas(v);
     setPavarde(pav);
     setEgzaminas(egz);
-
 }
 //-------------------------------------------------------------------------------------------
 double Studentas::iv4(vector<Studentas>& grupe, ofstream& laiko_failas)
@@ -181,7 +220,8 @@ double Studentas::iv4(vector<Studentas>& grupe, ofstream& laiko_failas)
             throw runtime_error("Nepavyko atidaryti failo! Bandykite dar karta.");
         }
         string antrastes;
-        getline(fd, antrastes);
+        getline(fd, antrastes); //header line
+        getline(fd, antrastes); //dashed line
         grupe.clear();
         while (getline (fd,antrastes))
         {

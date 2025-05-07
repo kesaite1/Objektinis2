@@ -12,6 +12,7 @@
 #include <random>
 #include <sstream>
 #include <windows.h>
+#include <cassert>
 
 
 using std::cout;
@@ -48,6 +49,7 @@ using std::istringstream;
 using std::move;
 using std::ostream;
 using std::istream;
-
+using std::getline;
+using std::abs;
 
 #endif 

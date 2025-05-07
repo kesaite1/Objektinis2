@@ -94,6 +94,7 @@ class Studentas {
         }
 
     // Methods
+    void test (vector<Studentas>& grupe);
     double vidurkis() const;
     double mediana() const;
     void pazymys_mediana();
