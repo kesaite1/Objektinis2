@@ -12,6 +12,7 @@
 #include <random>
 #include <sstream>
 #include <windows.h>
+#include <cassert>
 
 
 using std::cout;
@@ -41,5 +42,15 @@ using std::uniform_real_distribution;
 using std::runtime_error;
 using std::stringstream;
 using std::ios;
+using std::copy_if;
+using std::back_inserter;
+using std::remove_if;
+using std::istringstream;
+using std::move;
+using std::ostream;
+using std::istream;
+using std::getline;
+using std::abs;
+using std::logic_error;
 
 #endif 
