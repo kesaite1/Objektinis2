@@ -70,8 +70,8 @@
     vector<double> getHw() const { return hw; }
 
     //Setters 
-    void setVardas(const string& v) override;
-    void setPavarde(const string& p) override;
+    void setVardas(const string& v) override { vardas = v; };
+    void setPavarde(const string& p) override { pavarde = p; };
     void setPazVid(const double& vid) { paz_vid = vid; }
     void setPazM(const double& med) { paz_m = med; }
     void setEgzaminas(const int& egz) { egzaminas = egz; }

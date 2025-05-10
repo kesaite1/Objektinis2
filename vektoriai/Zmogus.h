@@ -8,15 +8,16 @@
 #include <cmath>
 #include "my.h"
 #include "code.h"
+#include "students.h"
 
 
 class Zmogus {
     protected:
     string vardas;
     string pavarde;
+
     public:
     virtual ~Zmogus() {}
-
 
     //Getters
     virtual string getVardas() const { return vardas; }

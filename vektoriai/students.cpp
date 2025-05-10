@@ -1,6 +1,7 @@
 #include "my.h"
 #include "code.h"
 #include "students.h"
+#include "Zmogus.h"
 
 
 void Studentas::test (vector<Studentas>& grupe)
