@@ -41,5 +41,10 @@ using std::uniform_real_distribution;
 using std::runtime_error;
 using std::stringstream;
 using std::ios;
+using std::copy_if;
+using std::back_inserter;
+using std::remove_if;
+using std::istringstream;
+
 
 #endif 
