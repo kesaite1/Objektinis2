@@ -239,7 +239,7 @@ double Studentas::iv4(vector<Studentas>& grupe, ofstream& laiko_failas)
         string antrastes;
         getline(fd, antrastes); //header line
         getline(fd, antrastes); //dashed line
-        grupe.clear();
+        
         while (getline (fd,antrastes))
         {
             Studentas B;

@@ -8,11 +8,9 @@
 #include <cmath>
 #include "my.h"
 #include "code.h"
+#include "Zmogus.h"
 
-class Studentas {
-    private:
-        string vardas;
-        string pavarde;
+    class Studentas: public Zmogus{
         vector <double> hw;
         int egzaminas;
         double paz_m;
@@ -20,17 +18,16 @@ class Studentas {
     public:
         // Default constructor
         Studentas() 
-        : vardas(""), pavarde(""), egzaminas(0), paz_m(0), paz_vid(0) {}
+        : egzaminas(0), paz_m(0), paz_vid(0) { vardas = ""; pavarde = "";}
         
         Studentas(const string& vardas, const string& pavarde, const vector<double>& hw, int egzaminas)
-        : vardas(vardas), pavarde(pavarde), hw(hw), egzaminas(egzaminas) {}
+        : hw(hw), egzaminas(egzaminas) { this->vardas = vardas; this->pavarde = pavarde;}
 
         ~Studentas() {}
 
         Studentas(const Studentas& other) 
-        : vardas(other.vardas), pavarde(other.pavarde), 
-        egzaminas(other.egzaminas), hw(other.hw),
-         paz_m(other.paz_m), paz_vid(other.paz_vid){}
+        : egzaminas(other.egzaminas), hw(other.hw),
+         paz_m(other.paz_m), paz_vid(other.paz_vid){ vardas = other.vardas; pavarde = other.pavarde;}
 
         Studentas& operator=(const Studentas& other) {
             if (this != &other) {
@@ -45,9 +42,8 @@ class Studentas {
         }
 
         Studentas(Studentas&& other) noexcept
-        : vardas(move(other.vardas)), pavarde(move(other.pavarde)),
-         hw(move(other.hw)), egzaminas(other.egzaminas),
-        paz_m(other.paz_m), paz_vid(other.paz_vid) {}
+        : hw(move(other.hw)), egzaminas(other.egzaminas),
+        paz_m(other.paz_m), paz_vid(other.paz_vid) { vardas = move(other.vardas); pavarde = move(other.pavarde);}
 
         Studentas& operator=(Studentas&& other) noexcept {
             if (this != &other) {
@@ -66,28 +62,23 @@ class Studentas {
     friend istream& operator>>(istream& is, Studentas& s);
 
     // Getters
-    string getVardas() const { return vardas; }
-    string getPavarde() const { return pavarde; }
+    string getVardas() const override;
+    string getPavarde() const override;
     double getPazVid() const { return paz_vid; }
     double getPazM() const { return paz_m; }
     int getEgzaminas() const { return egzaminas; }
     vector<double> getHw() const { return hw; }
 
     //Setters 
-    void setVardas(const string& v) { vardas = v; }
-    void setPavarde(const string& p) { pavarde = p; }
+    void setVardas(const string& v) override;
+    void setPavarde(const string& p) override;
     void setPazVid(const double& vid) { paz_vid = vid; }
     void setPazM(const double& med) { paz_m = med; }
     void setEgzaminas(const int& egz) { egzaminas = egz; }
     void setHw(const vector<double>& nd) { hw = nd; }
 
-
     void pazymioPridejimas(int nd) { 
-       // if (nd > 0  && nd <= 10) {
-            hw.push_back(nd); //}
-        //else {
-          //  cout << "Neteisingas pazymys! Iveskite skaiciu nuo 0 iki 10." << endl;
-        //}
+            hw.push_back(nd); 
     }
 
     void istrintiPaskutiniHw() {
@@ -106,6 +97,5 @@ class Studentas {
     double iv4(vector<Studentas>& grupe, ofstream& laiko_failas);
 
     };
-
 
 #endif
