@@ -4,7 +4,7 @@
 #include "Zmogus.h"
 
 
-void Studentas::test (vector<Studentas>& grupe)
+void Studentas::test (vector<Zmogus*>& grupe)
 {
     Studentas S("Vardas", "Pavarde", {2, 3, 6, 7}, 8);
 
@@ -191,7 +191,7 @@ void Studentas::iv3(vector <string>& vardai, vector <string>& pavardes, mt19937&
     setEgzaminas(egz);
 }
 //-------------------------------------------------------------------------------------------
-double Studentas::iv4(vector<Studentas>& grupe, ofstream& laiko_failas)
+double Studentas::iv4(vector<Zmogus*>& grupe, ofstream& laiko_failas)
 {
     string choose, filename;
     int nd, egz;
@@ -250,7 +250,8 @@ double Studentas::iv4(vector<Studentas>& grupe, ofstream& laiko_failas)
            
             B.pazymys_vidurkis();
             B.pazymys_mediana();
-            grupe.push_back(B);
+            Zmogus* zm = new Studentas(B);
+            grupe.push_back(zm);
         }
         auto skaitymo_end = high_resolution_clock::now();
         skaitymo_laikas = apdorojimo_laikas(skaitymo_start, skaitymo_end);

@@ -22,6 +22,8 @@ class Zmogus {
     //Getters
     virtual string getVardas() const { return vardas; }
     virtual string getPavarde() const {return pavarde;}
+    virtual double getPazVid() const = 0;
+    virtual double getPazM() const = 0;
 
     //Setters
     virtual void setVardas(const string& v) = 0;

@@ -64,8 +64,8 @@
     // Getters
     string getVardas() const override;
     string getPavarde() const override;
-    double getPazVid() const { return paz_vid; }
-    double getPazM() const { return paz_m; }
+    double getPazVid() const override { return paz_vid; }
+    double getPazM() const override { return paz_m; }
     int getEgzaminas() const { return egzaminas; }
     vector<double> getHw() const { return hw; }
 
@@ -86,7 +86,7 @@
         }
 
     // Methods
-    void test (vector<Studentas>& grupe);
+    void test (vector<Zmogus*>& grupe);
     double vidurkis() const;
     double mediana() const;
     void pazymys_mediana();
@@ -94,7 +94,7 @@
     void iv1();
     void iv2(mt19937& gen);
     void iv3(vector <string>& vardai, vector <string>& pavardes, mt19937& gen);
-    double iv4(vector<Studentas>& grupe, ofstream& laiko_failas);
+    double iv4(vector<Zmogus*>& grupe, ofstream& laiko_failas);
 
     };
 

@@ -8,9 +8,9 @@ int main()
     //ofstream report("sistemos_testavimo_duomenys.txt");
     ofstream laiko_failas("../laikas.txt", ios::app);
     double skirstymo_laikas, rusiavimo_laikas, skaitymo_laikas;
-    vector <Studentas> pazangus;
-    vector <Studentas> nepazangus;
-    vector <Studentas> grupe;
+    vector <Zmogus*> pazangus;
+    vector <Zmogus*> nepazangus;
+    vector <Zmogus*> grupe;
     int iv = 0, sorting = 0, strateg = 0 ;
     string isvestis;
     Studentas  A;
@@ -54,7 +54,8 @@ int main()
                 A.pazymys_vidurkis();
                 A.pazymys_mediana();
 
-                grupe.push_back(A);
+                Zmogus* zm = new Studentas(A); 
+                grupe.push_back(zm);
             }
             else if (iv == 2)
             {
@@ -62,7 +63,8 @@ int main()
                 A.pazymys_vidurkis();
                 A.pazymys_mediana();
 
-                grupe.push_back(A);
+                Zmogus* zm = new Studentas(A);
+                grupe.push_back(zm);
             }
             else if (iv == 3)
             {
@@ -70,7 +72,8 @@ int main()
                 A.pazymys_vidurkis();
                 A.pazymys_mediana();
 
-                grupe.push_back(A);
+                Zmogus* zm = new Studentas(A); // copy constructor
+                grupe.push_back(zm);
             }
             else if (iv == 4)
             {
@@ -102,11 +105,11 @@ int main()
                     
                         if (sorting == 1)
                         {
-                            sort(grupe.begin(), grupe.end(), [](const Studentas& A, const Studentas& B) { return A.getPazVid() > B.getPazVid(); });
+                            sort(grupe.begin(), grupe.end(), [](const Zmogus* A, const Zmogus* B) { return A->getPazVid() > B->getPazVid(); });
                         }
                         else if (sorting == 2)
                         {
-                            sort(grupe.begin(), grupe.end(), [](const Studentas& A, const Studentas& B) { return A.getPazM() > B.getPazM(); });
+                            sort(grupe.begin(), grupe.end(), [](const Zmogus* A, const Zmogus* B) { return A->getPazM() > B->getPazM(); });
                         }
                     auto rusiavimo_end = high_resolution_clock::now();
 				    rusiavimo_laikas = apdorojimo_laikas(rusiavimo_start, rusiavimo_end);
@@ -134,8 +137,8 @@ int main()
 
                         if (strateg == 1) {
                             for (const auto& A : grupe) {
-                                if (A.getPazVid() >= 5 || A.getPazM() >= 5) {
-                                    pazangus.push_back(A);
+                                if (A->getPazVid() >= 5 || A->getPazM() >= 5) {
+                                    pazangus.push_back(A); //dereferencing pointer
                                 }
                                 else {
                                     nepazangus.push_back(A);
@@ -145,7 +148,7 @@ int main()
                         else if (strateg == 2)
                         { 
                             for (int i = grupe.size() - 1; i >= 0; --i) {
-                                if (grupe[i].getPazVid() < 5.0 && grupe[i].getPazM() < 5.0) {
+                                if (grupe[i]->getPazVid() < 5.0 && grupe[i]->getPazM() < 5.0) {
                                     nepazangus.push_back(grupe[i]);
                                     grupe.erase(grupe.begin() + i); 
                                 }
