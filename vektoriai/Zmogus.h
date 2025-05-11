@@ -8,7 +8,6 @@
 #include <cmath>
 #include "my.h"
 #include "code.h"
-#include "students.h"
 
 
 class Zmogus {
@@ -31,6 +30,8 @@ class Zmogus {
 
 
 };
+
+ostream& operator<<(ostream& os, const Zmogus& zm);
 
 
 #endif

@@ -3,31 +3,40 @@
 #include "students.h"
 #include "Zmogus.h"
 
+string Studentas::getVardas() const {
+    return vardas;
+}
+
+string Studentas::getPavarde() const {
+    return pavarde;
+}
 
 void Studentas::test (vector<Zmogus*>& grupe)
 {
-    Studentas S("Vardas", "Pavarde", {2, 3, 6, 7}, 8);
+    Zmogus* zm = new Studentas("Vardas", "Pavarde", {2, 3, 6, 7}, 8);
+    Studentas* S = dynamic_cast<Studentas*>(zm); //kad pasiektu tik Studento klases metodus
+    assert(S != nullptr); // patikrinimas
 
-    S.pazymys_vidurkis();  // apskaičiuoja vidurkį
-    S.pazymys_mediana();   // apskaičiuoja medianą
+    S->pazymys_vidurkis();  // apskaičiuoja vidurkį
+    S->pazymys_mediana();   // apskaičiuoja medianą
 
-    assert(S.getVardas() == "Vardas");                  // tikrina varda
-    assert(S.getPavarde() == "Pavarde");                // tikrina pavarde
-    assert(S.getHw().size() == 4);
-    assert(S.getEgzaminas() == 8);                      // tikrina egzamino rezultatą
+    assert(zm->getVardas() == "Vardas");                  // tikrina varda
+    assert(zm->getPavarde() == "Pavarde");                // tikrina pavarde
+    assert(S->getHw().size() == 4);
+    assert(S->getEgzaminas() == 8);                      // tikrina egzamino rezultatą
 
     double expectedVid = 6.6;
     double expectedMed = 6.6;
     double tolerance = 0.001;
 
-    assert(abs(S.getPazVid() - expectedVid) < tolerance); // tikrina vidurkį
-    assert(abs(S.getPazM() - expectedMed) < tolerance);   // tikrina medianą
+    assert(abs(S->getPazVid() - expectedVid) < tolerance); // tikrina vidurkį
+    assert(abs(S->getPazM() - expectedMed) < tolerance);   // tikrina medianą
 
-    Studentas copy(S);
+    Studentas copy(*S);  //dereference S
     assert(copy.getVardas() == "Vardas");
 
     Studentas C;
-    C = S;
+    C = *S;
     assert(C.getEgzaminas() == 8);
 
     Studentas laik1("Jonas", "Jonaitis", {10, 9}, 10);
@@ -39,15 +48,18 @@ void Studentas::test (vector<Zmogus*>& grupe)
     moveAssigned = move(laik2);  // laik2's data moved
     assert(moveAssigned.getEgzaminas() == 5);
 
+    delete zm; // atlaisviname atmintį
     cout << "Visi metodai ir Rule of Five konstruktoriai veikia teisingai\n";
   
 }
 
-ostream& operator<<(ostream& os, const Studentas& A) {
-    os << left << setw(15) << A.getVardas();
-    os << left << setw(15) << A.getPavarde();
-    os << left << setw(18) << fixed << setprecision(2) << A.getPazVid();
-    os << fixed << setprecision(2) << A.getPazM() << endl;
+ostream& operator<<(ostream& os, const Zmogus& zm) {
+    const Studentas* S = dynamic_cast<const Studentas*>(&zm);
+   
+    os << left << setw(15) << S->getVardas();
+    os << left << setw(15) << S->getPavarde();
+    os << left << setw(18) << fixed << setprecision(2) << S->getPazVid();
+    os << fixed << setprecision(2) << S->getPazM() << endl;
     return os;
 }
 

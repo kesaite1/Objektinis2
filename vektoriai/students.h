@@ -58,7 +58,7 @@
         }
 
     //Input and output operations
-    friend ostream& operator<<(ostream& os, const Studentas& s);
+    friend ostream& operator<<(ostream& os, const Zmogus& zm);
     friend istream& operator>>(istream& is, Studentas& s);
 
     // Getters

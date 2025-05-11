@@ -157,9 +157,9 @@ int main()
                         }
                         else if (strateg == 3)
                         {
-                            copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const Studentas& A) { return A.getPazVid() < 5 && A.getPazM() < 5; }); 
+                            copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const Zmogus* A) { return A->getPazVid() < 5 && A->getPazM() < 5; }); 
 
-                            grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const Studentas& A) { return A.getPazVid() < 5 && A.getPazM() < 5; }), grupe.end());
+                            grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const Zmogus* A) { return A->getPazVid() < 5 && A->getPazM() < 5; }), grupe.end());
 
                             pazangus = grupe;  // Remaining students are "pazangus"
                         }
@@ -197,11 +197,13 @@ int main()
 
                           //  auto isvedimas_start = high_resolution_clock::now();
                             for (const auto& A : pazangus) {
-                                sp << A;
+                                sp << *A;
+                                delete A; // Atlaisviname atmintį
                             }
 
                             for (const auto& A : nepazangus) {
-                                sn << A;
+                                sn << *A;
+                                delete A; // Atlaisviname atmintį
                             }
                             //auto isvedimas_end = high_resolution_clock::now();
                             //isvedimo_laikas = apdorojimo_laikas(isvedimas_start, isvedimas_end);
@@ -220,14 +222,16 @@ int main()
                             // auto isvedimas_start = high_resolution_clock::now();
                             for (const auto& A : pazangus) {
 
-                                cout << A;
+                                cout << *A;
+                                delete A; // Atlaisviname atmintį
                             }
                             cout << "-----------------------------------------------------------------\n";
                             cout << "Nepazangus studentai: \n";
                             cout << "-----------------------------------------------------------------\n";
                             for (const auto& A : nepazangus) {
 
-                                cout << A;
+                                cout << *A;
+                                delete A; // Atlaisviname atmintį
                             }
                             cout << "-----------------------------------------------------------------\n";
                             //auto isvedimas_end = high_resolution_clock::now();
