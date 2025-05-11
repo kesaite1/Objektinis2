@@ -1,6 +1,6 @@
 ***Objektinio programavimo projektas***
 
-Ši programa skirta darbui su studentų duomenimis, padeda uos valdyti, talpinti ir apdoroti. 
+Ši programa skirta darbui su studentų duomenimis, padeda juos valdyti, talpinti ir apdoroti. 
 
 **Funkcijos**
 1. Studentų duomenų įvedimas: vardas, pavardė, namų darbų bei egzamino pažymiai.
@@ -37,6 +37,8 @@ Kode panaudotas išimčių valdymas (angl. Exception Handling), naudojamas try-c
 - *v0.4* - sukuriama failu generatoriaus funkcija. Implementuojamas studentu skirstymas i dvi grupes pagal ju galutini pazymi: pazangus (galutinis balas >= 5.0 ) ir nepazangus (galutinis balas < 5.0). Suskirstyti studentai yra isvedami i du atskirus naujus failus.
 - *v1.0* - implementuojamos trys skirtingos programos naudojancios skirtingu tipu konteinerius: deque, vector, list. Optimizuojamas studentu skirtymo i dvi grupes realizacija ivedant tris skirtingas strategijas. Parengta programos idiegimo instrukcija ir paruostas cmake CMakeLists.txt failas.
 - *v1.1* - pereinama iš struktūrų duomenų tipo į klasių duomenų tipą. 
+- *v1.2* - realizuojami "Rule of five" ir įvesties/išvesties operatoriai. Sukuriamas testas programos metodų, konstruktorių ir destruktoriaus veiklai patikrinti.
+- *v1.5* - sukuriamos dvi klasės: bazinė (abstrakti) klasė Zmogus ir iš jos išvestinė (derived) klasė Studentas.
 
 
 **Programu paleisties proceso instrukcija**
