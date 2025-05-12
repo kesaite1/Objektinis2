@@ -2,6 +2,9 @@
 #include "code.h"
 #include "students.h"
 #include "Zmogus.h"
+#include <memory>
+
+Zmogus::~Zmogus() {} // definition of pure virtual destructor
 
 string Studentas::getVardas() const {
     return vardas;
@@ -11,10 +14,10 @@ string Studentas::getPavarde() const {
     return pavarde;
 }
 
-void Studentas::test (vector<Zmogus*>& grupe)
+void Studentas::test ()
 {
-    Zmogus* zm = new Studentas("Vardas", "Pavarde", {2, 3, 6, 7}, 8);
-    Studentas* S = dynamic_cast<Studentas*>(zm); //kad pasiektu tik Studento klases metodus
+    auto zm = make_unique<Studentas>("Vardas", "Pavarde", vector<int>{2, 3, 6, 7}, 8);
+    Studentas* S = dynamic_cast<Studentas*>(zm.get()); //kad pasiektu tik Studento klases metodus
     assert(S != nullptr); // patikrinimas
 
     S->pazymys_vidurkis();  // apskaičiuoja vidurkį
@@ -48,7 +51,7 @@ void Studentas::test (vector<Zmogus*>& grupe)
     moveAssigned = move(laik2);  // laik2's data moved
     assert(moveAssigned.getEgzaminas() == 5);
 
-    delete zm; // atlaisviname atmintį
+    //delete zm; // atlaisviname atmintį
     cout << "Visi metodai ir Rule of Five konstruktoriai veikia teisingai\n";
   
 }
@@ -113,7 +116,7 @@ double Studentas::mediana() const
 {
     int sk;
     sk = hw.size();
-    vector<double> temp = hw; 
+    vector<int> temp = hw; 
     sort(temp.begin(), temp.end());
     if (sk == 0) return 0;
     if (sk % 2 == 0)  return (hw[sk / 2] + hw[(sk / 2) - 1]) / 2.0;
@@ -203,7 +206,7 @@ void Studentas::iv3(vector <string>& vardai, vector <string>& pavardes, mt19937&
     setEgzaminas(egz);
 }
 //-------------------------------------------------------------------------------------------
-double Studentas::iv4(vector<Zmogus*>& grupe, ofstream& laiko_failas)
+double Studentas::iv4(vector <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas)
 {
     string choose, filename;
     int nd, egz;
@@ -234,11 +237,13 @@ double Studentas::iv4(vector<Zmogus*>& grupe, ofstream& laiko_failas)
     cout << "Iveskite failo pavadinima tokiu formatu: pavadinimas.txt: ";
     cin >> filename;
     
-        if (choose == "g" || choose == "G") {
-            if (filename.size() < 4 || filename.substr(filename.size() - 4) != ".txt") {
+        if (filename.size() < 4 || filename.substr(filename.size() - 4) != ".txt") {
 
 				filename += ".txt";  // automatiskia prideda .txt failo pavadinime
             }
+    
+        if (choose == "g" || choose == "G") {
+            
             generavimas(filename);
             //generavimo_laikas(filename, laiko_failas);
         }
@@ -262,8 +267,8 @@ double Studentas::iv4(vector<Zmogus*>& grupe, ofstream& laiko_failas)
            
             B.pazymys_vidurkis();
             B.pazymys_mediana();
-            Zmogus* zm = new Studentas(B);
-            grupe.push_back(zm);
+            //Zmogus* zm = new Studentas(B);
+            grupe.push_back(make_unique<Studentas>(B));
         }
         auto skaitymo_end = high_resolution_clock::now();
         skaitymo_laikas = apdorojimo_laikas(skaitymo_start, skaitymo_end);

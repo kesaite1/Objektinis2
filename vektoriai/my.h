@@ -13,7 +13,7 @@
 #include <sstream>
 #include <windows.h>
 #include <cassert>
-
+#include <memory>
 
 using std::cout;
 using std::cin;
@@ -52,5 +52,7 @@ using std::istream;
 using std::getline;
 using std::abs;
 using std::logic_error;
+using std::unique_ptr;
+using std::make_unique;
 
 #endif 

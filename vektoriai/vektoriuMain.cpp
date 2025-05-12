@@ -8,9 +8,9 @@ int main()
     //ofstream report("sistemos_testavimo_duomenys.txt");
     ofstream laiko_failas("../laikas.txt", ios::app);
     double skirstymo_laikas, rusiavimo_laikas, skaitymo_laikas;
-    vector <Zmogus*> pazangus;
-    vector <Zmogus*> nepazangus;
-    vector <Zmogus*> grupe;
+    vector <unique_ptr<Zmogus>> pazangus;
+    vector <unique_ptr<Zmogus>> nepazangus;
+    vector <unique_ptr<Zmogus>> grupe;
     int iv = 0, sorting = 0, strateg = 0 ;
     string isvestis;
     Studentas  A;
@@ -27,7 +27,7 @@ int main()
 
     //TEST 
 
-    A.test(grupe); 
+    A.test(); 
 
     //TEST
     while (iv != 5)
@@ -54,8 +54,8 @@ int main()
                 A.pazymys_vidurkis();
                 A.pazymys_mediana();
 
-                Zmogus* zm = new Studentas(A); 
-                grupe.push_back(zm);
+                //Zmogus* zm = new Studentas(A); // copy constructor
+                grupe.push_back(make_unique<Studentas>(A));
             }
             else if (iv == 2)
             {
@@ -63,8 +63,7 @@ int main()
                 A.pazymys_vidurkis();
                 A.pazymys_mediana();
 
-                Zmogus* zm = new Studentas(A);
-                grupe.push_back(zm);
+                grupe.push_back(make_unique<Studentas>(A));
             }
             else if (iv == 3)
             {
@@ -72,8 +71,7 @@ int main()
                 A.pazymys_vidurkis();
                 A.pazymys_mediana();
 
-                Zmogus* zm = new Studentas(A); // copy constructor
-                grupe.push_back(zm);
+                grupe.push_back(make_unique<Studentas>(A));
             }
             else if (iv == 4)
             {
@@ -105,11 +103,11 @@ int main()
                     
                         if (sorting == 1)
                         {
-                            sort(grupe.begin(), grupe.end(), [](const Zmogus* A, const Zmogus* B) { return A->getPazVid() > B->getPazVid(); });
+                            sort(grupe.begin(), grupe.end(), [](const unique_ptr<Zmogus>& A, const unique_ptr<Zmogus>& B) { return A->getPazVid() > B->getPazVid(); });
                         }
                         else if (sorting == 2)
                         {
-                            sort(grupe.begin(), grupe.end(), [](const Zmogus* A, const Zmogus* B) { return A->getPazM() > B->getPazM(); });
+                            sort(grupe.begin(), grupe.end(), [](const unique_ptr<Zmogus>& A, const unique_ptr<Zmogus>& B) { return A->getPazM() > B->getPazM(); });
                         }
                     auto rusiavimo_end = high_resolution_clock::now();
 				    rusiavimo_laikas = apdorojimo_laikas(rusiavimo_start, rusiavimo_end);
@@ -138,10 +136,10 @@ int main()
                         if (strateg == 1) {
                             for (const auto& A : grupe) {
                                 if (A->getPazVid() >= 5 || A->getPazM() >= 5) {
-                                    pazangus.push_back(A); //dereferencing pointer
+                                    pazangus.push_back(make_unique<Studentas>(*dynamic_cast<Studentas*>(A.get()))); //dereferencing pointer
                                 }
                                 else {
-                                    nepazangus.push_back(A);
+                                    nepazangus.push_back(make_unique<Studentas>(*dynamic_cast<Studentas*>(A.get())));
                                 }
                             }
                         }
@@ -149,19 +147,28 @@ int main()
                         { 
                             for (int i = grupe.size() - 1; i >= 0; --i) {
                                 if (grupe[i]->getPazVid() < 5.0 && grupe[i]->getPazM() < 5.0) {
-                                    nepazangus.push_back(grupe[i]);
+                                    nepazangus.push_back(move(grupe[i]));
                                     grupe.erase(grupe.begin() + i); 
                                 }
                             }
-                            pazangus = grupe;
+                            pazangus = move(grupe);
                         }
                         else if (strateg == 3)
                         {
-                            copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const Zmogus* A) { return A->getPazVid() < 5 && A->getPazM() < 5; }); 
+                            auto it = stable_partition(grupe.begin(), grupe.end(), [](const unique_ptr<Zmogus>& A) {
+                             return A->getPazVid() < 5 && A->getPazM() < 5;
+                            });
+                             // Move failing students to nepazangus
+                             move(make_move_iterator(grupe.begin()), make_move_iterator(it), back_inserter(nepazangus));
 
-                            grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const Zmogus* A) { return A->getPazVid() < 5 && A->getPazM() < 5; }), grupe.end());
+                            // Move passing students to pazangus
+                             move(make_move_iterator(it), make_move_iterator(grupe.end()), back_inserter(pazangus));
 
-                            pazangus = grupe;  // Remaining students are "pazangus"
+                            /*copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const unique_ptr<Zmogus>& A){ return A->getPazVid() < 5 && A->getPazM() < 5; }); 
+
+                            grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const unique_ptr<Zmogus>& A) { return A->getPazVid() < 5 && A->getPazM() < 5; }), grupe.end());
+
+                            pazangus = move(grupe);  // Remaining students are "pazangus"*/
                         }
 
                             auto skirstymas_end = high_resolution_clock::now();
@@ -198,12 +205,12 @@ int main()
                           //  auto isvedimas_start = high_resolution_clock::now();
                             for (const auto& A : pazangus) {
                                 sp << *A;
-                                delete A; // Atlaisviname atmintį
+                                //delete A; // Atlaisviname atmintį
                             }
 
                             for (const auto& A : nepazangus) {
                                 sn << *A;
-                                delete A; // Atlaisviname atmintį
+                                //delete A; // Atlaisviname atmintį
                             }
                             //auto isvedimas_end = high_resolution_clock::now();
                             //isvedimo_laikas = apdorojimo_laikas(isvedimas_start, isvedimas_end);
@@ -223,7 +230,7 @@ int main()
                             for (const auto& A : pazangus) {
 
                                 cout << *A;
-                                delete A; // Atlaisviname atmintį
+                                //delete A; // Atlaisviname atmintį
                             }
                             cout << "-----------------------------------------------------------------\n";
                             cout << "Nepazangus studentai: \n";
@@ -231,7 +238,7 @@ int main()
                             for (const auto& A : nepazangus) {
 
                                 cout << *A;
-                                delete A; // Atlaisviname atmintį
+                                //delete A; // Atlaisviname atmintį
                             }
                             cout << "-----------------------------------------------------------------\n";
                             //auto isvedimas_end = high_resolution_clock::now();

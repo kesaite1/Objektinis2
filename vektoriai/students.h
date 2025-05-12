@@ -11,7 +11,7 @@
 #include "Zmogus.h"
 
     class Studentas: public Zmogus{
-        vector <double> hw;
+        vector <int> hw;
         int egzaminas;
         double paz_m;
         double paz_vid;
@@ -20,7 +20,7 @@
         Studentas() 
         : egzaminas(0), paz_m(0), paz_vid(0) { vardas = ""; pavarde = "";}
         
-        Studentas(const string& vardas, const string& pavarde, const vector<double>& hw, int egzaminas)
+        Studentas(const string& vardas, const string& pavarde, const vector<int>& hw, int egzaminas)
         : hw(hw), egzaminas(egzaminas) { this->vardas = vardas; this->pavarde = pavarde;}
 
         ~Studentas() {}
@@ -67,7 +67,7 @@
     double getPazVid() const override { return paz_vid; }
     double getPazM() const override { return paz_m; }
     int getEgzaminas() const { return egzaminas; }
-    vector<double> getHw() const { return hw; }
+    vector<int> getHw() const { return hw; }
 
     //Setters 
     void setVardas(const string& v) override { vardas = v; };
@@ -75,7 +75,7 @@
     void setPazVid(const double& vid) { paz_vid = vid; }
     void setPazM(const double& med) { paz_m = med; }
     void setEgzaminas(const int& egz) { egzaminas = egz; }
-    void setHw(const vector<double>& nd) { hw = nd; }
+    void setHw(const vector<int>& nd) { hw = nd; }
 
     void pazymioPridejimas(int nd) { 
             hw.push_back(nd); 
@@ -86,7 +86,7 @@
         }
 
     // Methods
-    void test (vector<Zmogus*>& grupe);
+    void test ();
     double vidurkis() const;
     double mediana() const;
     void pazymys_mediana();
@@ -94,7 +94,7 @@
     void iv1();
     void iv2(mt19937& gen);
     void iv3(vector <string>& vardai, vector <string>& pavardes, mt19937& gen);
-    double iv4(vector<Zmogus*>& grupe, ofstream& laiko_failas);
+    double iv4(vector <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas);
 
     };
 

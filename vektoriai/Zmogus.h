@@ -16,7 +16,7 @@ class Zmogus {
     string pavarde;
 
     public:
-    virtual ~Zmogus() {}
+    virtual ~Zmogus() = 0; //pure virtual destructor
 
     //Getters
     virtual string getVardas() const { return vardas; }
@@ -31,6 +31,7 @@ class Zmogus {
 
 };
 
+//Zmogus::~Zmogus() {} // definition of pure virtual destructor
 ostream& operator<<(ostream& os, const Zmogus& zm);
 
 
