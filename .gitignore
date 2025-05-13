@@ -36,11 +36,16 @@
 *.vcxproj.user
 *.suo
 *.ipch
+*.user
+*.userosscache
+*.sln.docstates
 *.obj
 *.pch
 *.pdb
 *.ilk
 *.idb
+*.log
+*.db
 *.tlog
 *.lastbuildstate
 
@@ -50,11 +55,37 @@ Release/
 x64/
 x86/
 
+# Ignore Debug/Release builds
+**/Debug/
+**/Release/
+**/x64/
+*.exe
+*.dll
+
+.vs/
+**/.vs/
+vektoriai/.vs/
+vektoriai/v.pradine/x64/
+vektoriai/x64/
+deque/.vs/
+deque/v.pradine/x64/
+deque/x64/
+list/.vs/
+list/v.pradine/x64/
+list/x64/
+
+
 # Ignore user-specific files
 *.opensdf
 *.sdf
 *.user
 *.ncb
+
+# Ignore student data text files if needed
+studentai*.txt
+nepazangus.txt
+pazangus.txt
+laikas.txt
 
 # Ignore CMake-related files (if using CMake)
 CMakeCache.txt
@@ -62,3 +93,21 @@ CMakeFiles/
 CMakeLists.txt.user
 
 vektoriai/Debug/studentai1000000.txt
+.txt
+backup-repo/
+.vscode/
+
+deque/CppProperties.json
+deque/v.pradine.sln
+deque/v.pradine.vcxproj
+deque/v.pradine.vcxproj.filters
+list/CppProperties.json
+list/v.pradine.sln
+list/v.pradine.vcxproj
+list/v.pradine.vcxproj.filters
+vektoriai/CppProperties.json
+vektoriai/v.pradine.sln
+vektoriai/v.pradine.vcxproj
+vektoriai/v.pradine.vcxproj.filters
+
+build/
