@@ -18,16 +18,23 @@
     public:
         // Default constructor
         Studentas() 
-        : egzaminas(0), paz_m(0), paz_vid(0) { vardas = ""; pavarde = "";}
+        : Zmogus("",""), egzaminas(0), paz_m(0), paz_vid(0) {}
         
         Studentas(const string& vardas, const string& pavarde, const vector<int>& hw, int egzaminas)
-        : hw(hw), egzaminas(egzaminas) { this->vardas = vardas; this->pavarde = pavarde;}
+        : Zmogus(vardas, pavarde), hw(hw), egzaminas(egzaminas) {}
 
-        ~Studentas() {}
-
+        ~Studentas() {
+            hw.clear();
+            egzaminas = 0;
+            paz_vid = 0.0;
+            paz_m = 0.0;
+            vardas.clear();
+            pavarde.clear();
+        }
+        // Copy constructor and assignment operator
         Studentas(const Studentas& other) 
-        : egzaminas(other.egzaminas), hw(other.hw),
-         paz_m(other.paz_m), paz_vid(other.paz_vid){ vardas = other.vardas; pavarde = other.pavarde;}
+        :   Zmogus(other), egzaminas(other.egzaminas), hw(other.hw),
+         paz_m(other.paz_m), paz_vid(other.paz_vid) {}
 
         Studentas& operator=(const Studentas& other) {
             if (this != &other) {
@@ -40,19 +47,28 @@
             }
             return *this;
         }
-
-        Studentas(Studentas&& other) noexcept
-        : hw(move(other.hw)), egzaminas(other.egzaminas),
-        paz_m(other.paz_m), paz_vid(other.paz_vid) { vardas = move(other.vardas); pavarde = move(other.pavarde);}
+        // Move constructor and assignment operator
+        Studentas(Studentas&& other) noexcept:    
+        Zmogus(move(other)),    
+        hw(move(other.hw)), egzaminas((other.egzaminas)),
+        paz_m((other.paz_m)), paz_vid((other.paz_vid)) {
+            other.egzaminas = 0;
+            other.paz_m = 0.0;
+            other.paz_vid = 0.0;
+        }
 
         Studentas& operator=(Studentas&& other) noexcept {
             if (this != &other) {
-                vardas = move(other.vardas);
-                pavarde = move(other.pavarde);
+                Zmogus::operator = (move(other));
+                
                 hw = move(other.hw);
                 egzaminas = other.egzaminas;
                 paz_m = other.paz_m;
                 paz_vid = other.paz_vid;
+
+                other.egzaminas = 0;
+                other.paz_m = 0.0;
+                other.paz_vid = 0.0;
             }
             return *this;
         }

@@ -45,11 +45,13 @@ void Studentas::test ()
     Studentas laik1("Jonas", "Jonaitis", {10, 9}, 10);
     Studentas moveConstructor(move(laik1));  // laik1's data moved
     assert(moveConstructor.getPavarde() == "Jonaitis");
+    cout << "Kintamuju reiksmes likusios laikiname objekte po move constructor: Vardas: " << laik1.getVardas() << " Egzamino pazymys: " << laik1.getEgzaminas() << endl;
     
     Studentas laik2("A", "B", {1, 2, 3}, 5);
     Studentas moveAssigned;
     moveAssigned = move(laik2);  // laik2's data moved
     assert(moveAssigned.getEgzaminas() == 5);
+    cout << "Kintamuju reiksmes likusios laikiname objekte po move operator: Vardas: " << laik2.getVardas() << " Egzamino pazymys: " << laik2.getEgzaminas() << endl;
 
     //delete zm; // atlaisviname atmintį
     cout << "Visi metodai ir Rule of Five konstruktoriai veikia teisingai\n";

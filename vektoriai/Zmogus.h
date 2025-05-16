@@ -16,6 +16,9 @@ class Zmogus {
     string pavarde;
 
     public:
+    Zmogus(const string& vardas, const string& pavarde)
+        : vardas(vardas), pavarde(pavarde) {}
+
     virtual ~Zmogus() = 0; //pure virtual destructor
 
     //Getters
@@ -27,6 +30,24 @@ class Zmogus {
     //Setters
     virtual void setVardas(const string& v) = 0;
     virtual void setPavarde(const string& p) = 0;
+    
+    Zmogus(const Zmogus& other) = default;
+
+    Zmogus(Zmogus&& other) noexcept
+    : vardas(move(other.vardas)), pavarde(move(other.pavarde)) {
+    other.vardas = "";
+    other.pavarde = "";
+}
+
+    Zmogus& operator=(Zmogus&& other) noexcept {
+    if (this != &other) {
+        vardas = move(other.vardas);
+        pavarde = move(other.pavarde);
+        other.vardas = "";
+        other.pavarde = "";
+    }
+    return *this;
+}
 
 
 };

@@ -164,11 +164,6 @@ int main()
                             // Move passing students to pazangus
                              move(make_move_iterator(it), make_move_iterator(grupe.end()), back_inserter(pazangus));
 
-                            /*copy_if(grupe.begin(), grupe.end(), back_inserter(nepazangus), [](const unique_ptr<Zmogus>& A){ return A->getPazVid() < 5 && A->getPazM() < 5; }); 
-
-                            grupe.erase(remove_if(grupe.begin(), grupe.end(), [](const unique_ptr<Zmogus>& A) { return A->getPazVid() < 5 && A->getPazM() < 5; }), grupe.end());
-
-                            pazangus = move(grupe);  // Remaining students are "pazangus"*/
                         }
 
                             auto skirstymas_end = high_resolution_clock::now();
