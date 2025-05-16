@@ -39,6 +39,7 @@ Kode panaudotas išimčių valdymas (angl. Exception Handling), naudojamas try-c
 - *v1.1* - pereinama iš struktūrų duomenų tipo į klasių duomenų tipą. 
 - *v1.2* - realizuojami "Rule of five" ir įvesties/išvesties operatoriai. Sukuriamas testas programos metodų, konstruktorių ir destruktoriaus veiklai patikrinti.
 - *v1.5* - sukuriamos dvi klasės: bazinė (abstrakti) klasė Zmogus ir iš jos išvestinė (derived) klasė Studentas.
+- *v2.0* - sukuriama dokumentacija panaudojant Doxygen. Realizuojami Unit testai.
 
 
 **Programu paleisties proceso instrukcija**
@@ -181,6 +182,8 @@ Metodas *test* ištestuoja programos metodų ir konstruktorių veiklą. Jei visk
 **Perdengti operatoriai**
 programoje naudoami perdengti operatoriai įvesčiai ir išvesčiai. Perdengti operatoriai leidžia iš naujo apibrėžti standartinių operatorių veiklą, kai jie yra naudojami su klasės objektais. Tai padaro class'ės naudojimą lengvesnį ir intuityvesnį. 
 
+**Unit testing**
+Realizuoti du Unit testai, kurie testuoja Studento klasės konstruktorius, getter'ius bei The Rule of Five.
 
 
 
