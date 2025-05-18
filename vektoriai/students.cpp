@@ -211,8 +211,8 @@ void Studentas::iv3(vector <string>& vardai, vector <string>& pavardes, mt19937&
 double Studentas::iv4(vector <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas)
 {
     string choose, filename;
-    int nd, egz;
-    string v, pav;
+    int nd, egz, dydis;
+    string v, pav, userInput;
     double skaitymo_laikas;
     while (true) {
     try {
@@ -233,6 +233,27 @@ double Studentas::iv4(vector <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas
     catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }
     catch (const out_of_range& e) { cerr << "Klaida: " << e.what() << endl; }
 	}
+    while (true) {
+        try {
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+            cout << "Iveskite irasu skaiciu faile: ";
+            getline(cin, userInput);
+            stringstream ss(userInput);
+
+
+            if (!(ss >> dydis) || !(ss.eof())) {  // Tikrina, kad visa ivestis butu integer
+                throw invalid_argument("Neteisinga ivestis! Iveskite skaiciu.");
+            }
+            if (dydis <= 0)
+            {
+                throw out_of_range("Neteisinga ivestis! Iveskite skaiciu didesni uz 0.");
+            }
+            break;
+        }
+        catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }
+        catch (const out_of_range& e) { cerr << "Klaida: " << e.what() << endl; }
+    }
+
     auto skaitymo_start = high_resolution_clock::now();
     while (true) {
         try {
@@ -246,7 +267,7 @@ double Studentas::iv4(vector <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas
     
         if (choose == "g" || choose == "G") {
             
-            generavimas(filename);
+            generavimas(filename, dydis);
             //generavimo_laikas(filename, laiko_failas);
         }
 
@@ -260,7 +281,7 @@ double Studentas::iv4(vector <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas
         getline(fd, antrastes); //header line
         getline(fd, antrastes); //dashed line
         
-        while (getline (fd,antrastes))
+        while (dydis > 0 && getline(fd, antrastes))
         {
             Studentas B;
             istringstream iss(antrastes);
@@ -271,6 +292,7 @@ double Studentas::iv4(vector <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas
             B.pazymys_mediana();
             //Zmogus* zm = new Studentas(B);
             grupe.push_back(make_unique<Studentas>(B));
+            dydis--;
         }
         auto skaitymo_end = high_resolution_clock::now();
         skaitymo_laikas = apdorojimo_laikas(skaitymo_start, skaitymo_end);

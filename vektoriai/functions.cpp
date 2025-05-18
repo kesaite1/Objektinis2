@@ -10,7 +10,7 @@ string raide(string vardai)
     return vardai;
 }
 //------------------------------------------------------------------------------------------------------------------------
-void generavimas(string failas)
+void generavimas(string failas, int dydis)
 {
     random_device rd1;
     mt19937 gen(rd1());
@@ -18,10 +18,10 @@ void generavimas(string failas)
     uniform_int_distribution<int> kiek(1, 50);
     uniform_int_distribution<int> nd(1, 10);
     uniform_int_distribution<int> egz(1, 10);
-    int dydis;
-    string userInput;
+    //int dydis;
+    //string userInput;
     cin.ignore(1000, '\n');
-    while (true) {
+    /*while (true) {
         try {
             cout << "Iveskite irasu skaiciu faile: ";
             getline(cin, userInput);
@@ -39,7 +39,7 @@ void generavimas(string failas)
         }
         catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }
         catch (const out_of_range& e) { cerr << "Klaida: " << e.what() << endl; }
-    }
+    }*/
 
     file << left << setw(20) << "Vardas" << left << setw(20) << "Pavarde" << left << setw(5) << "Pazymiai + egzamino balas\n";
     file << "----------------------------------------------------------------------------------\n";
