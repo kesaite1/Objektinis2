@@ -9,9 +9,10 @@
 #include "my.h"
 #include "code.h"
 #include "Zmogus.h"
+#include "vector.h"
 
     class Studentas: public Zmogus{
-        vector <int> hw;
+        ManoVektorius <int> hw;
         int egzaminas;
         double paz_m;
         double paz_vid;
@@ -20,7 +21,7 @@
         Studentas() 
         : Zmogus("",""), egzaminas(0), paz_m(0), paz_vid(0) {}
         
-        Studentas(const string& vardas, const string& pavarde, const vector<int>& hw, int egzaminas)
+        Studentas(const string& vardas, const string& pavarde, const ManoVektorius<int>& hw, int egzaminas)
         : Zmogus(vardas, pavarde), hw(hw), egzaminas(egzaminas) {}
 
         ~Studentas() {
@@ -83,7 +84,7 @@
     double getPazVid() const override { return paz_vid; }
     double getPazM() const override { return paz_m; }
     int getEgzaminas() const { return egzaminas; }
-    vector<int> getHw() const { return hw; }
+    ManoVektorius<int> getHw() const { return hw; }
 
     //Setters 
     void setVardas(const string& v) override { vardas = v; };
@@ -91,7 +92,7 @@
     void setPazVid(const double& vid) { paz_vid = vid; }
     void setPazM(const double& med) { paz_m = med; }
     void setEgzaminas(const int& egz) { egzaminas = egz; }
-    void setHw(const vector<int>& nd) { hw = nd; }
+    void setHw(const ManoVektorius<int>& nd) { hw = nd; }
 
     void pazymioPridejimas(int nd) { 
             hw.push_back(nd); 
@@ -109,8 +110,8 @@
     void pazymys_vidurkis();
     void iv1();
     void iv2(mt19937& gen);
-    void iv3(vector <string>& vardai, vector <string>& pavardes, mt19937& gen);
-    double iv4(vector <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas);
+    void iv3(ManoVektorius <string>& vardai, ManoVektorius <string>& pavardes, mt19937& gen);
+    double iv4(ManoVektorius <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas);
 
     };
 

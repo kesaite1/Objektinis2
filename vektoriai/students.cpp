@@ -3,6 +3,7 @@
 #include "students.h"
 #include "Zmogus.h"
 #include <memory>
+#include "vector.h"
 
 Zmogus::~Zmogus() {} // definition of pure virtual destructor
 
@@ -16,7 +17,7 @@ string Studentas::getPavarde() const {
 
 void Studentas::test ()
 {
-    auto zm = make_unique<Studentas>("Vardas", "Pavarde", vector<int>{2, 3, 6, 7}, 8);
+    auto zm = make_unique<Studentas>("Vardas", "Pavarde", ManoVektorius<int>{2, 3, 6, 7}, 8);
     Studentas* S = dynamic_cast<Studentas*>(zm.get()); //kad pasiektu tik Studento klases metodus
     assert(S != nullptr); // patikrinimas
 
@@ -71,7 +72,7 @@ ostream& operator<<(ostream& os, const Zmogus& zm) {
 istream& operator>>(istream& is, Studentas& B) {
     string v, pav;
     int nd;
-    vector<int> laik;
+    ManoVektorius<int> laik;
         
             is >> v >> pav;
            
@@ -184,7 +185,7 @@ void Studentas::iv2(mt19937& gen)
     setEgzaminas(egz);
 }
 //------------------------------------------------------------------------------------------
-void Studentas::iv3(vector <string>& vardai, vector <string>& pavardes, mt19937& gen)
+void Studentas::iv3(ManoVektorius <string>& vardai, ManoVektorius <string>& pavardes, mt19937& gen)
 {
     int nd, egz;
     string v, pav;
@@ -208,7 +209,7 @@ void Studentas::iv3(vector <string>& vardai, vector <string>& pavardes, mt19937&
     setEgzaminas(egz);
 }
 //-------------------------------------------------------------------------------------------
-double Studentas::iv4(vector <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas)
+double Studentas::iv4(ManoVektorius <unique_ptr<Zmogus>>& grupe, ofstream& laiko_failas)
 {
     string choose, filename;
     int nd, egz, dydis;

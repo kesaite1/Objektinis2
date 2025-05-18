@@ -2,20 +2,22 @@
 #include "code.h"
 #include "students.h"
 #include "Zmogus.h"
+#include "vector.h"
+#include <memory>
 
 int main()
 {
     //ofstream report("sistemos_testavimo_duomenys.txt");
     ofstream laiko_failas("../laikas.txt", ios::app);
     double skirstymo_laikas, rusiavimo_laikas, skaitymo_laikas;
-    vector <unique_ptr<Zmogus>> pazangus;
-    vector <unique_ptr<Zmogus>> nepazangus;
-    vector <unique_ptr<Zmogus>> grupe;
+    ManoVektorius <unique_ptr<Zmogus>> pazangus;
+    ManoVektorius <unique_ptr<Zmogus>> nepazangus;
+    ManoVektorius <unique_ptr<Zmogus>> grupe;
     int iv = 0, sorting = 0, strateg = 0 ;
     string isvestis;
     Studentas  A;
-    vector <string> vardai = { "Emile", "Greta", "Haroldas", "Guste", "Paulius", "Aleksas", "Kristina", "Aidas", "Vasare", "Diana" };
-    vector <string> pavardes = { "Jonaitis", "Pavardaite", "Pavardenis", "Adomaitis", "Lapaite", "Apuokas", "Karalaite", "Nausediene" };
+    ManoVektorius <string> vardai = { "Emile", "Greta", "Haroldas", "Guste", "Paulius", "Aleksas", "Kristina", "Aidas", "Vasare", "Diana" };
+    ManoVektorius <string> pavardes = { "Jonaitis", "Pavardaite", "Pavardenis", "Adomaitis", "Lapaite", "Apuokas", "Karalaite", "Nausediene" };
 
     random_device rd;  
     mt19937 gen(rd());

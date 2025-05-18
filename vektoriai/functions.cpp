@@ -2,7 +2,7 @@
 #include "code.h"
 #include "students.h"
 #include "Zmogus.h"
-
+#include "vector.h"
 
 string raide(string vardai)
 {
