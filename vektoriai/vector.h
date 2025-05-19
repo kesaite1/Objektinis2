@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 
 template <typename T>
 class ManoVektorius {
@@ -18,6 +19,10 @@ class ManoVektorius {
     size_t capacity_;
 
     public:
+    using value_type = T;
+    using iterator = T*;
+    using const_iterator = const T*;
+
     ManoVektorius();
     ManoVektorius(std::initializer_list<T> list) {
     size_ = list.size();
@@ -27,50 +32,144 @@ class ManoVektorius {
 }
     ~ManoVektorius();
 
+
     void push_back(const T& value);
+    void push_back(T&& value);
     void pop_back();
     void reallocate(size_t new_capacity);
-    T& operator[](size_t index);
-    T& at(size_t index);
-    size_t size() const noexcept;
-    size_t capacity() const noexcept;
-    bool empty() const noexcept;
     void clear();
     void erase(size_t index);
 
-    // 1. Add back() support
-T& back() {
-    return data_[size_ - 1];
+    T& operator[](size_t index);
+    const T& operator[](size_t index) const;
+    T& at(size_t index);
+
+    size_t size() const noexcept;
+    size_t capacity() const noexcept;
+    bool empty() const noexcept;
+   
+    const T* end() const;
+    const T* begin() const;
+    T* begin();
+    T* end();
+    T& back();
+    const T& back() const;
+};
+
+template <typename T>
+ManoVektorius<T>::ManoVektorius() : data_(nullptr), size_(0), capacity_(0) {}
+
+template <typename T>
+ManoVektorius<T>::~ManoVektorius() {
+    delete[] data_;
+}
+//-----------------------------------------------------
+template <typename T>
+void ManoVektorius<T>::push_back(const T& value) {
+    if (size_ == capacity_) {
+        reallocate(capacity_ == 0 ? 1 : capacity_ * 2);
+    }
+    data_[size_++] = value;
 }
 
-const T& back() const {
-    return data_[size_ - 1];
+template <typename T>
+void ManoVektorius<T>::push_back(T&& value) {
+    if (size_ == capacity_) {
+        reallocate(capacity_ == 0 ? 1 : capacity_ * 2);
+    }
+    data_[size_++] = std::move(value);
+}
+//-----------------------------------------------------
+template <typename T>
+void ManoVektorius<T>::pop_back() {
+    if (size_ > 0) {
+        --size_;
+    }
 }
 
-// 2. Add begin() and end() for range-based for-loops
-T* begin() {
-    return data_;
+template <typename T>
+void ManoVektorius<T>::reallocate(size_t new_capacity) {
+    T* new_data = new T[new_capacity];
+    for (size_t i = 0; i < size_; ++i)
+        new_data[i] = std::move(data_[i]);
+    delete[] data_;
+    data_ = new_data;
+    capacity_ = new_capacity;
 }
 
-T* end() {
-    return data_ + size_;
+template <typename T>
+void ManoVektorius<T>::clear() {
+    size_ = 0;
 }
 
-const T* begin() const {
-    return data_;
+template <typename T>
+void ManoVektorius<T>::erase(std::size_t index) {
+    if (index >= size_) throw std::out_of_range("Index out of bounds");
+    for (std::size_t i = index; i < size_ - 1; ++i) {
+        data_[i] = std::move(data_[i + 1]);
+    }
+    --size_;
 }
-
-const T* end() const {
-    return data_ + size_;
-}
-
-// 3. Make operator[] work in const contexts
-
-const T& operator[](size_t index) const {
+//-----------------------------------------------------
+template <typename T>
+T& ManoVektorius<T>::operator[](size_t index) {
     return data_[index];
 }
 
+template <typename T>
+const T& ManoVektorius<T>::operator[](size_t index) const {
+    return data_[index];
+}
 
+template <typename T>
+T& ManoVektorius<T>::at(size_t index) {
+    if (index >= size_) throw std::out_of_range("Index out of range");
+    return data_[index];
+}
+//-----------------------------------------------------
+template <typename T>
+size_t ManoVektorius<T>::size() const noexcept {
+    return size_;
+}
 
-};
+template <typename T>
+size_t ManoVektorius<T>::capacity() const noexcept {
+    return capacity_;
+}
+
+template <typename T>
+bool ManoVektorius<T>::empty() const noexcept {
+    return size_ == 0;
+}
+//-----------------------------------------------------
+template <typename T>
+T& ManoVektorius<T>::back() {
+    return data_[size_ - 1];
+}
+
+template <typename T>
+const T& ManoVektorius<T>::back() const {
+    return data_[size_ - 1];
+}
+
+template <typename T>
+T* ManoVektorius<T>::begin() {
+    return data_;
+}
+
+template <typename T>
+T* ManoVektorius<T>::end() {
+    return data_ + size_;
+}
+
+template <typename T>
+const T* ManoVektorius<T>::begin() const {
+    return data_;
+}
+
+template <typename T>
+const T* ManoVektorius<T>::end() const {
+    return data_ + size_;
+}
+
  #endif

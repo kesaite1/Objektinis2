@@ -150,7 +150,7 @@ int main()
                             for (int i = grupe.size() - 1; i >= 0; --i) {
                                 if (grupe[i]->getPazVid() < 5.0 && grupe[i]->getPazM() < 5.0) {
                                     nepazangus.push_back(move(grupe[i]));
-                                    grupe.erase(grupe.begin() + i); 
+                                    grupe.erase(i); 
                                 }
                             }
                             pazangus = move(grupe);

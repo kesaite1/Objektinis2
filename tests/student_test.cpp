@@ -5,7 +5,7 @@
 
 
 TEST_CASE("Studentas constructor and getters") {
-    auto zm = make_unique<Studentas>("Jonas", "Jonaitis", vector<int>{8, 9, 10}, 9);
+    auto zm = make_unique<Studentas>("Jonas", "Jonaitis", ManoVektorius<int>{8, 9, 10}, 9);
     Studentas* s = dynamic_cast<Studentas*>(zm.get()); 
     s->pazymys_vidurkis();
     s->pazymys_mediana();
@@ -19,7 +19,7 @@ TEST_CASE("Studentas constructor and getters") {
 }
 
 TEST_CASE("The Rule of Five") {
-    auto zm1 = make_unique<Studentas>("Petras", "Petraitis", vector<int>{5, 9, 10, 8}, 7);
+    auto zm1 = make_unique<Studentas>("Petras", "Petraitis", ManoVektorius<int>{5, 9, 10, 8}, 7);
     Studentas* s1 = dynamic_cast<Studentas*>(zm1.get()); 
 
     Studentas copy(*s1); // Copy constructor

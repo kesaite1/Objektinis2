@@ -119,7 +119,7 @@ double Studentas::mediana() const
 {
     int sk;
     sk = hw.size();
-    vector<int> temp = hw; 
+    ManoVektorius<int> temp = hw; 
     sort(temp.begin(), temp.end());
     if (sk == 0) return 0;
     if (sk % 2 == 0)  return (hw[sk / 2] + hw[(sk / 2) - 1]) / 2.0;
