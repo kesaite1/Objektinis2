@@ -130,12 +130,14 @@ void Studentas::pazymys_mediana()
 {
     int egz = getEgzaminas();
     setPazM((round ((0.4 * mediana() + 0.6 * egz) * 100.0)) / 100.0);
+    //cout<<"Mediana apskaiciuota\n";
 }
 //-------------------------------------------------------------------------------------------
 void Studentas::pazymys_vidurkis()
 {
     int egz = getEgzaminas();
     setPazVid((round ((0.4 * vidurkis() + 0.6 * egz) * 100.0)) / 100.0);
+    //cout<<"Vidurkis apskaiciuotas\n";
 }
 //-------------------------------------------------------------------------------------------
 void Studentas::iv1()

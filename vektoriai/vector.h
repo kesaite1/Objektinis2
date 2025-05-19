@@ -30,7 +30,12 @@ class ManoVektorius {
     data_ = new T[capacity_];
     std::copy(list.begin(), list.end(), data_);
 }
-    ~ManoVektorius();
+
+ManoVektorius(const ManoVektorius& other);
+ManoVektorius& operator=(const ManoVektorius& other);
+ManoVektorius(ManoVektorius&& other) noexcept; //  move constructor
+ManoVektorius& operator=(ManoVektorius&& other) noexcept; //  move assignment
+~ManoVektorius();
 
 
     void push_back(const T& value);
@@ -60,24 +65,77 @@ template <typename T>
 ManoVektorius<T>::ManoVektorius() : data_(nullptr), size_(0), capacity_(0) {}
 
 template <typename T>
+ManoVektorius<T>::ManoVektorius(const ManoVektorius<T>& other)
+    : size_(other.size_), capacity_(other.capacity_) {
+    data_ = new T[capacity_];
+    for (size_t i = 0; i < size_; ++i) {
+        data_[i] = other.data_[i]; // T must be copyable
+    }
+}
+
+template <typename T>
+ManoVektorius<T>& ManoVektorius<T>::operator=(const ManoVektorius<T>& other) {
+    if (this == &other) return *this; // self-assignment guard
+
+    T* new_data = new T[other.capacity_];
+    for (size_t i = 0; i < other.size_; ++i) {
+        new_data[i] = other.data_[i];
+    }
+
+    delete[] data_; // free old memory
+    data_ = new_data;
+    size_ = other.size_;
+    capacity_ = other.capacity_;
+
+    return *this;
+}
+
+
+template <typename T>
+ManoVektorius<T>::ManoVektorius(ManoVektorius<T>&& other) noexcept
+    : data_(other.data_), size_(other.size_), capacity_(other.capacity_) {
+    other.data_ = nullptr;
+    other.size_ = 0;
+    other.capacity_ = 0;
+}
+
+template <typename T>
+ManoVektorius<T>& ManoVektorius<T>::operator=(ManoVektorius<T>&& other) noexcept {
+    if (this != &other) {
+        delete[] data_;
+        data_ = other.data_;
+        size_ = other.size_;
+        capacity_ = other.capacity_;
+        other.data_ = nullptr;
+        other.size_ = 0;
+        other.capacity_ = 0;
+    }
+    return *this;
+}
+
+template <typename T>
 ManoVektorius<T>::~ManoVektorius() {
     delete[] data_;
 }
 //-----------------------------------------------------
 template <typename T>
 void ManoVektorius<T>::push_back(const T& value) {
+   // cout<<"push_back be move\n";
     if (size_ == capacity_) {
         reallocate(capacity_ == 0 ? 1 : capacity_ * 2);
     }
     data_[size_++] = value;
+   // cout<<"push_back be move completed\n";
 }
 
 template <typename T>
 void ManoVektorius<T>::push_back(T&& value) {
+  //  cout<<"push_back su move\n";
     if (size_ == capacity_) {
         reallocate(capacity_ == 0 ? 1 : capacity_ * 2);
     }
     data_[size_++] = std::move(value);
+   // cout<<"push_back su move completed\n";
 }
 //-----------------------------------------------------
 template <typename T>
