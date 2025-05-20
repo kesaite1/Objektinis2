@@ -42,6 +42,7 @@ Kode panaudotas išimčių valdymas (angl. Exception Handling), naudojamas try-c
 - *v2.0* - sukuriama dokumentacija panaudojant Doxygen. Realizuojami Unit testai.
 
 
+
 **Programu paleisties proceso instrukcija**
 1. Isidiekite MinGW (arba MinGW-w64) ir CMake (3.25 arba naujesne versija).
 2. Parsisiuskite sia repozitorija su visais failais.
@@ -194,6 +195,39 @@ programoje naudoami perdengti operatoriai įvesčiai ir išvesčiai. Perdengti o
 **Unit testing**
 Realizuoti du Unit testai, kurie testuoja Studento klasės konstruktorius, getter'ius bei The Rule of Five.
 
+**Vector klasės metodų pvz.**
+*push_back metodas*
+template <typename T>
+void ManoVektorius<T>::push_back(const T& value) {
+   if (size_ == capacity_) {
+        reallocate(capacity_ == 0 ? 1 : capacity_ * 2);
+    }
+    data_[size_++] = value;
+   }
+
+*operator[] metodas*
+template <typename T>
+const T& ManoVektorius<T>::operator[](size_t index) const {
+    return data_[index];
+}
+
+*back() metodas*
+template <typename T>
+T& ManoVektorius<T>::back() {
+    return data_[size_ - 1];
+}
+
+*begin() metodas*
+template <typename T>
+T* ManoVektorius<T>::begin() {
+    return data_;
+}
+
+*end() metodas*
+template <typename T>
+T* ManoVektorius<T>::end() {
+    return data_ + size_;
+}
 
 
 ![Duomenų įvedimo procesas](https://github.com/user-attachments/assets/26189234-f898-48fd-a30b-62bf3c1a61e5)
