@@ -1,0 +1,245 @@
+\doxysection{vector.\+h}
+\hypertarget{vector_8h_source}{}\label{vector_8h_source}\index{vektoriai/vector.h@{vektoriai/vector.h}}
+\mbox{\hyperlink{vector_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VECTOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VECTOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <initializer\_list>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ T*\ data\_;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\_;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ capacity\_;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ realloc\_count\_\ =\ 0;\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_mano_vektorius_a066abc602c9dc6ed0d31831781a1c653}{value\_type}}\ =\ T;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_mano_vektorius_a38e5432f043c58de08c84e298f40828f}{iterator}}\ =\ T*;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_mano_vektorius_a437a6a929e2f19339bf61b9bf3e991be}{const\_iterator}}\ =\ \textcolor{keyword}{const}\ T*;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}();}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_mano_vektorius_afbe170c91948d9f970128ec3b37640cd}{ManoVektorius}}(std::initializer\_list<T>\ list)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ size\_\ =\ list.size();}
+\DoxyCodeLine{00030\ \ \ \ \ capacity\_\ =\ size\_;}
+\DoxyCodeLine{00031\ \ \ \ \ data\_\ =\ \textcolor{keyword}{new}\ T[capacity\_];}
+\DoxyCodeLine{00032\ \ \ \ \ std::copy(list.begin(),\ list.end(),\ data\_);}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \mbox{\hyperlink{class_mano_vektorius_a32a8cb0625a73fb1fcd1bbae80646c88}{ManoVektorius}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}\&\ other);}
+\DoxyCodeLine{00036\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}\&\ \mbox{\hyperlink{class_mano_vektorius_a34745bf3334e34627ea052639497f5e9}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}\&\ other);}
+\DoxyCodeLine{00037\ \mbox{\hyperlink{class_mano_vektorius_a2d9d7bb07c96478ce1e57d480ecf6ee9}{ManoVektorius}}(\mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}\&\&\ other)\ \textcolor{keyword}{noexcept};\ \textcolor{comment}{//\ \ move\ constructor}}
+\DoxyCodeLine{00038\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}\&\ \mbox{\hyperlink{class_mano_vektorius_a00735238ac4ef474ccc4ed0896d704c4}{operator=}}(\mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}\&\&\ other)\ \textcolor{keyword}{noexcept};\ \textcolor{comment}{//\ \ move\ assignment}}
+\DoxyCodeLine{00039\ \mbox{\hyperlink{class_mano_vektorius_aa8915fab183335d6d4f941d65ebddfdb}{\string~ManoVektorius}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_mano_vektorius_a70f644cb88a6e353dd5c341710dc83d8}{getReallocationCount}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return}\ realloc\_count\_;}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_a56b255a5d5a4d2596eb0a1c28ff13b17}{push\_back}}(\textcolor{keyword}{const}\ T\&\ value);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_a99bb9217d729b0ef1fcdd743eb1545ca}{push\_back}}(T\&\&\ value);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_a77339162a47e0ae44a801e53f59fa44f}{pop\_back}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_ac1b802dbc4033cf202ded8a2dfe7aad4}{reallocate}}(\textcolor{keywordtype}{size\_t}\ new\_capacity);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_a9c316e76bbc0c1ea7e35f51e6c42dd35}{clear}}();}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_ad0c151354e49f17728cbec74bfa28b81}{erase}}(\textcolor{keywordtype}{size\_t}\ index);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ T\&\ \mbox{\hyperlink{class_mano_vektorius_adbf4ed9ab8db1bf0ca7bd3c00bd2baf3}{operator[]}}(\textcolor{keywordtype}{size\_t}\ index);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{class_mano_vektorius_a7544e5c4c99b2d4c4a922ceaf72fa549}{operator[]}}(\textcolor{keywordtype}{size\_t}\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ \ \ \ \ T\&\ \mbox{\hyperlink{class_mano_vektorius_a63f6c157e106b7a27899a21d92e7276d}{at}}(\textcolor{keywordtype}{size\_t}\ index);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_mano_vektorius_aed795bb8b281913deead2b15e767fa94}{size}}()\ const\ noexcept;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_mano_vektorius_a8bd592c169dfc90f9ec6a6e90f6c44fe}{capacity}}()\ const\ noexcept;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_mano_vektorius_ae3c4310c150d760f4e096c3ae96e5ccb}{empty}}()\ const\ noexcept;}
+\DoxyCodeLine{00060\ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ const\ T*\ \mbox{\hyperlink{class_mano_vektorius_ac0f1d460063a2ae6f9dff789db2764b8}{end}}()\ const;}
+\DoxyCodeLine{00062\ \ \ \ \ const\ T*\ \mbox{\hyperlink{class_mano_vektorius_ac9ea092f74b982a014a8495b2e5156dc}{begin}}()\ const;}
+\DoxyCodeLine{00063\ \ \ \ \ T*\ \mbox{\hyperlink{class_mano_vektorius_ac9ea092f74b982a014a8495b2e5156dc}{begin}}();}
+\DoxyCodeLine{00064\ \ \ \ \ T*\ \mbox{\hyperlink{class_mano_vektorius_ac0f1d460063a2ae6f9dff789db2764b8}{end}}();}
+\DoxyCodeLine{00065\ \ \ \ \ T\&\ \mbox{\hyperlink{class_mano_vektorius_ae106c95edb0554ea22a433462ec537ac}{back}}();}
+\DoxyCodeLine{00066\ \ \ \ \ const\ T\&\ \mbox{\hyperlink{class_mano_vektorius_ae106c95edb0554ea22a433462ec537ac}{back}}()\ const;}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ template\ <typename\ T>}
+\DoxyCodeLine{00070\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}<T>::\mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius}}()\ :\ data\_(\textcolor{keywordtype}{nullptr}),\ size\_(0),\ capacity\_(0)\ \{\}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00073\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius<T>::ManoVektorius}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius<T>}}\&\ other)}
+\DoxyCodeLine{00074\ \ \ \ \ :\ size\_(other.size\_),\ capacity\_(other.capacity\_)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ data\_\ =\ \textcolor{keyword}{new}\ T[capacity\_];}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size\_;\ ++i)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ data\_[i]\ =\ other.data\_[i];\ \textcolor{comment}{//\ T\ must\ be\ copyable}}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00082\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius<T>}}\&\ \mbox{\hyperlink{class_mano_vektorius_a34745bf3334e34627ea052639497f5e9}{ManoVektorius<T>::operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius<T>}}\&\ other)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ ==\ \&other)\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \textcolor{comment}{//\ self-\/assignment\ guard}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ T*\ new\_data\ =\ \textcolor{keyword}{new}\ T[other.capacity\_];}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ other.size\_;\ ++i)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ new\_data[i]\ =\ other.data\_[i];}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{delete}[]\ data\_;\ \textcolor{comment}{//\ free\ old\ memory}}
+\DoxyCodeLine{00091\ \ \ \ \ data\_\ =\ new\_data;}
+\DoxyCodeLine{00092\ \ \ \ \ size\_\ =\ other.size\_;}
+\DoxyCodeLine{00093\ \ \ \ \ capacity\_\ =\ other.capacity\_;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00100\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius<T>::ManoVektorius}}(\mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius<T>}}\&\&\ other)\ noexcept}
+\DoxyCodeLine{00101\ \ \ \ \ :\ data\_(other.data\_),\ size\_(other.size\_),\ capacity\_(other.capacity\_)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ other.data\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00103\ \ \ \ \ other.size\_\ =\ 0;}
+\DoxyCodeLine{00104\ \ \ \ \ other.capacity\_\ =\ 0;}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00108\ \mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius<T>}}\&\ \mbox{\hyperlink{class_mano_vektorius_a34745bf3334e34627ea052639497f5e9}{ManoVektorius<T>::operator=}}(\mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{ManoVektorius<T>}}\&\&\ other)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ data\_;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ data\_\ =\ other.data\_;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ size\_\ =\ other.size\_;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ capacity\_\ =\ other.capacity\_;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ other.data\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ other.size\_\ =\ 0;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ other.capacity\_\ =\ 0;}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00119\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00122\ \mbox{\hyperlink{class_mano_vektorius_aa8915fab183335d6d4f941d65ebddfdb}{ManoVektorius<T>::\string~ManoVektorius}}()\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{delete}[]\ data\_;}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00126\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00127\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_a56b255a5d5a4d2596eb0a1c28ff13b17}{ManoVektorius<T>::push\_back}}(\textcolor{keyword}{const}\ T\&\ value)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \textcolor{comment}{//\ cout<<"{}push\_back\ be\ move\(\backslash\)n"{};}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\_\ ==\ capacity\_)\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_mano_vektorius_ac1b802dbc4033cf202ded8a2dfe7aad4}{reallocate}}(capacity\_\ ==\ 0\ ?\ 1\ :\ capacity\_\ *\ 2);}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ data\_[size\_++]\ =\ value;}
+\DoxyCodeLine{00133\ \ \ \ \textcolor{comment}{//\ cout<<"{}push\_back\ be\ move\ completed\(\backslash\)n"{};}}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00137\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_a56b255a5d5a4d2596eb0a1c28ff13b17}{ManoVektorius<T>::push\_back}}(T\&\&\ value)\ \{}
+\DoxyCodeLine{00138\ \ \ \textcolor{comment}{//\ \ cout<<"{}push\_back\ su\ move\(\backslash\)n"{};}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\_\ ==\ capacity\_)\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_mano_vektorius_ac1b802dbc4033cf202ded8a2dfe7aad4}{reallocate}}(capacity\_\ ==\ 0\ ?\ 1\ :\ capacity\_\ *\ 2);}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ data\_[size\_++]\ =\ std::move(value);}
+\DoxyCodeLine{00143\ \ \ \ \textcolor{comment}{//\ cout<<"{}push\_back\ su\ move\ completed\(\backslash\)n"{};}}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00147\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_a77339162a47e0ae44a801e53f59fa44f}{ManoVektorius<T>::pop\_back}}()\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\_\ >\ 0)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ -\/-\/size\_;}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00154\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_ac1b802dbc4033cf202ded8a2dfe7aad4}{ManoVektorius<T>::reallocate}}(\textcolor{keywordtype}{size\_t}\ new\_capacity)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ T*\ new\_data\ =\ \textcolor{keyword}{new}\ T[new\_capacity];}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size\_;\ ++i)}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ new\_data[i]\ =\ std::move(data\_[i]);}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{delete}[]\ data\_;}
+\DoxyCodeLine{00159\ \ \ \ \ data\_\ =\ new\_data;}
+\DoxyCodeLine{00160\ \ \ \ \ capacity\_\ =\ new\_capacity;}
+\DoxyCodeLine{00161\ \ \ \ \ ++realloc\_count\_;}
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00165\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_a9c316e76bbc0c1ea7e35f51e6c42dd35}{ManoVektorius<T>::clear}}()\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ size\_\ =\ 0;}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00170\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_mano_vektorius_ad0c151354e49f17728cbec74bfa28b81}{ManoVektorius<T>::erase}}(std::size\_t\ index)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ size\_)\ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Index\ out\ of\ bounds"{}});}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ index;\ i\ <\ size\_\ -\/\ 1;\ ++i)\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ data\_[i]\ =\ std::move(data\_[i\ +\ 1]);}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ -\/-\/size\_;}
+\DoxyCodeLine{00176\ \}}
+\DoxyCodeLine{00177\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00178\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00179\ T\&\ \mbox{\hyperlink{class_mano_vektorius_adbf4ed9ab8db1bf0ca7bd3c00bd2baf3}{ManoVektorius<T>::operator[]}}(\textcolor{keywordtype}{size\_t}\ index)\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{return}\ data\_[index];}
+\DoxyCodeLine{00181\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00184\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{class_mano_vektorius_adbf4ed9ab8db1bf0ca7bd3c00bd2baf3}{ManoVektorius<T>::operator[]}}(\textcolor{keywordtype}{size\_t}\ index)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{return}\ data\_[index];}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00189\ T\&\ \mbox{\hyperlink{class_mano_vektorius_a63f6c157e106b7a27899a21d92e7276d}{ManoVektorius<T>::at}}(\textcolor{keywordtype}{size\_t}\ index)\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ size\_)\ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Index\ out\ of\ range"{}});}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ data\_[index];}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00194\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00195\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_mano_vektorius_aed795bb8b281913deead2b15e767fa94}{ManoVektorius<T>::size}}()\ const\ noexcept\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{return}\ size\_;}
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00200\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_mano_vektorius_a8bd592c169dfc90f9ec6a6e90f6c44fe}{ManoVektorius<T>::capacity}}()\ const\ noexcept\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{return}\ capacity\_;}
+\DoxyCodeLine{00202\ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00205\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_mano_vektorius_ae3c4310c150d760f4e096c3ae96e5ccb}{ManoVektorius<T>::empty}}()\ const\ noexcept\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ size\_\ ==\ 0;}
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00209\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00210\ T\&\ \mbox{\hyperlink{class_mano_vektorius_ae106c95edb0554ea22a433462ec537ac}{ManoVektorius<T>::back}}()\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ data\_[size\_\ -\/\ 1];}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{class_mano_vektorius_ae106c95edb0554ea22a433462ec537ac}{ManoVektorius<T>::back}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{return}\ data\_[size\_\ -\/\ 1];}
+\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00220\ T*\ \mbox{\hyperlink{class_mano_vektorius_ac9ea092f74b982a014a8495b2e5156dc}{ManoVektorius<T>::begin}}()\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{return}\ data\_;}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00225\ T*\ \mbox{\hyperlink{class_mano_vektorius_ac0f1d460063a2ae6f9dff789db2764b8}{ManoVektorius<T>::end}}()\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{return}\ data\_\ +\ size\_;}
+\DoxyCodeLine{00227\ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00230\ \textcolor{keyword}{const}\ T*\ \mbox{\hyperlink{class_mano_vektorius_ac9ea092f74b982a014a8495b2e5156dc}{ManoVektorius<T>::begin}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{return}\ data\_;}
+\DoxyCodeLine{00232\ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00235\ \textcolor{keyword}{const}\ T*\ \mbox{\hyperlink{class_mano_vektorius_ac0f1d460063a2ae6f9dff789db2764b8}{ManoVektorius<T>::end}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return}\ data\_\ +\ size\_;}
+\DoxyCodeLine{00237\ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\ \#endif}}
+
+\end{DoxyCode}
