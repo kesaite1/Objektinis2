@@ -39,7 +39,64 @@ TEST_CASE("The Rule of Five") {
     REQUIRE(s6.getEgzaminas() == 8);
     REQUIRE(s5.getEgzaminas() == 0); 
 
-    system("pause");
-
 }
 
+TEST_CASE("Default constructor") {
+    ManoVektorius<int> v;
+    REQUIRE(v.size() == 0);
+    REQUIRE(v.capacity() == 0);
+    REQUIRE(v.empty());
+}
+
+TEST_CASE("push_back and operator[]") {
+    ManoVektorius<int> v;
+    v.push_back(42);
+    REQUIRE(v.size() == 1);
+    REQUIRE(v[0] == 42);
+
+    v.push_back(100);
+    REQUIRE(v[1] == 100);
+}
+
+TEST_CASE("pop_back") {
+    ManoVektorius<int> v;
+    v.push_back(1);
+    v.push_back(2);
+    v.pop_back();
+    REQUIRE(v.size() == 1);
+    REQUIRE(v[0] == 1);
+}
+
+TEST_CASE("at() throws on bad index") {
+    ManoVektorius<int> v;
+    v.push_back(10);
+    REQUIRE_THROWS_AS(v.at(1), std::out_of_range);
+}
+
+TEST_CASE("clear and empty") {
+    ManoVektorius<int> v;
+    v.push_back(1);
+    v.clear();
+    REQUIRE(v.size() == 0);
+    REQUIRE(v.empty());
+}
+
+TEST_CASE("erase") {
+    ManoVektorius<int> v;
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+    v.erase(1); // remove 20
+    REQUIRE(v.size() == 2);
+    REQUIRE(v[0] == 10);
+    REQUIRE(v[1] == 30);
+}
+
+TEST_CASE("back") {
+    ManoVektorius<int> v;
+    v.push_back(5);
+    v.push_back(9);
+    REQUIRE(v.back() == 9);
+
+     system("pause");
+}

@@ -133,7 +133,7 @@ Testavimo metu yra testuojamos šios programos operacijos:
 |-o3                     |   2.64526            |   4.66363               |
 
 
-**std::vector ir Vector spartos palyginimas**
+**std::vector ir Vector tuščių vektorių užpildymo, naudojant push_back(), laiko palyginimas**
 |Įrašų skaičius          |Laikas std::vector    | Laikas Vector           |
 |------------------------|----------------------|-------------------------|
 |10,000                  |6.19009               |5.96799                  |
@@ -232,6 +232,14 @@ T* ManoVektorius<T>::end() {
 **Atminties pertvarkymų (reallocation) skaičius naudojant std::vector ir Vector**
 ![alt text](image-1.png)
 ![alt text](image.png)
+
+
+**Programos veikimo laiko palyginimas su std::vector ir Vector klase**
+|Įrašų skaičius          |Laikas std::vector    | Laikas Vector           |
+|------------------------|----------------------|-------------------------|
+|10,000                  |6.19009               |21.7113                  |
+|100,000                 |8.11821               |33.5313                  |
+|1,000,000               |21.9003               |229.146                  |
 
 
 ![Duomenų įvedimo procesas](https://github.com/user-attachments/assets/26189234-f898-48fd-a30b-62bf3c1a61e5)

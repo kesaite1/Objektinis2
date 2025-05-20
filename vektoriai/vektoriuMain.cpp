@@ -9,7 +9,7 @@ int main()
 {
     //ofstream report("sistemos_testavimo_duomenys.txt");
     ofstream laiko_failas("../laikas.txt", ios::app);
-    double skirstymo_laikas, rusiavimo_laikas, skaitymo_laikas;
+    double skirstymo_laikas, rusiavimo_laikas, skaitymo_laikas, programos_laikas;
     ManoVektorius <unique_ptr<Zmogus>> pazangus;
     ManoVektorius <unique_ptr<Zmogus>> nepazangus;
     ManoVektorius <unique_ptr<Zmogus>> grupe;
@@ -21,7 +21,7 @@ int main()
 
     random_device rd;  
     mt19937 gen(rd());
-    //auto programa_start = high_resolution_clock::now();
+    auto programa_start = high_resolution_clock::now();
     laiko_failas << "------------------------------------------------------------------------------------------\n";
 	laiko_failas << "Programos su vector konteineriais laikai:\n";
 	laiko_failas << " " << endl;
@@ -78,8 +78,8 @@ int main()
             else if (iv == 4)
             {
                 skaitymo_laikas = A.iv4(grupe, laiko_failas);
-                cout << "-----------------------------------------------------------------\n";
-                cout << "Atminties perskirtymo skaicius su std::vector: " << grupe.getReallocationCount() << "\n";
+               // cout << "-----------------------------------------------------------------\n";
+               // cout << "Atminties perskirtymo skaicius su std::vector: " << grupe.getReallocationCount() << "\n";
 
             }
 
@@ -259,15 +259,15 @@ int main()
         catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }
         catch (const out_of_range& e) { cerr << "Klaida: " << e.what() << endl; }
     }
-	//auto programa_end = high_resolution_clock::now();
-   // programos_laikas = apdorojimo_laikas(programa_start, programa_end);
-	//laiko_failas << "Programos darbo laikas: " << programos_laikas << endl;
+	auto programa_end = high_resolution_clock::now();
+    programos_laikas = apdorojimo_laikas(programa_start, programa_end);
+	laiko_failas << "Programos darbo laikas: " << programos_laikas << endl;
     laiko_failas << "\n";
     laiko_failas << "Testu laiku vidurkis: " << (skirstymo_laikas + rusiavimo_laikas + skaitymo_laikas) / 5.0 << endl;
     laiko_failas << "------------------------------------------------------------------------------------------\n";
      if (isvestis == "e")
      {
-        // cout << "Programos darbo laikas: " << setprecision(5) << programos_laikas << endl;
+         cout << "Programos darbo laikas: " << setprecision(5) << programos_laikas << endl;
          cout << "-----------------------------------------------------------------\n";
          cout << "Testu laiku vidurkis: " << setprecision(5) <<(skirstymo_laikas + rusiavimo_laikas + skaitymo_laikas) / 5.0 << endl;
      }
