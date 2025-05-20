@@ -78,6 +78,9 @@ int main()
             else if (iv == 4)
             {
                 skaitymo_laikas = A.iv4(grupe, laiko_failas);
+                cout << "-----------------------------------------------------------------\n";
+                cout << "Atminties perskirtymo skaicius su Vector klase: " << grupe.getReallocationCount() << "\n";
+
             }
 
             else {

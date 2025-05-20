@@ -61,11 +61,12 @@ void Studentas::test ()
 
 ostream& operator<<(ostream& os, const Zmogus& zm) {
     const Studentas* S = dynamic_cast<const Studentas*>(&zm);
-   
+    
     os << left << setw(15) << S->getVardas();
     os << left << setw(15) << S->getPavarde();
     os << left << setw(18) << fixed << setprecision(2) << S->getPazVid();
     os << fixed << setprecision(2) << S->getPazM() << endl;
+   
     return os;
 }
 
@@ -312,6 +313,7 @@ double Studentas::iv4(ManoVektorius <unique_ptr<Zmogus>>& grupe, ofstream& laiko
             flaikas = skaitymo_laikas + glaikas;
         }
         else flaikas = skaitymo_laikas;*/
+        
 
         return skaitymo_laikas;
 }

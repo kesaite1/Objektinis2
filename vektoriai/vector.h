@@ -17,6 +17,7 @@ class ManoVektorius {
     T* data_;
     size_t size_;
     size_t capacity_;
+    size_t realloc_count_ = 0; 
 
     public:
     using value_type = T;
@@ -37,6 +38,10 @@ ManoVektorius(ManoVektorius&& other) noexcept; //  move constructor
 ManoVektorius& operator=(ManoVektorius&& other) noexcept; //  move assignment
 ~ManoVektorius();
 
+
+size_t getReallocationCount() const {
+    return realloc_count_;
+}
 
     void push_back(const T& value);
     void push_back(T&& value);
@@ -153,6 +158,7 @@ void ManoVektorius<T>::reallocate(size_t new_capacity) {
     delete[] data_;
     data_ = new_data;
     capacity_ = new_capacity;
+    ++realloc_count_;
 }
 
 template <typename T>

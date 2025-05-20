@@ -229,6 +229,9 @@ T* ManoVektorius<T>::end() {
     return data_ + size_;
 }
 
+**Atminties pertvarkymų (reallocation) skaičius naudojant std::vector ir Vector**
+![alt text](image.png)
+
 
 ![Duomenų įvedimo procesas](https://github.com/user-attachments/assets/26189234-f898-48fd-a30b-62bf3c1a61e5)
 ![Studentų duomenų išvedimas](https://github.com/user-attachments/assets/86870dbd-6b5f-4b90-9b4e-786b5260a189)
