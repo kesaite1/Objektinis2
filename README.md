@@ -40,6 +40,7 @@ Kode panaudotas išimčių valdymas (angl. Exception Handling), naudojamas try-c
 - *v1.2* - realizuojami "Rule of five" ir įvesties/išvesties operatoriai. Sukuriamas testas programos metodų, konstruktorių ir destruktoriaus veiklai patikrinti.
 - *v1.5* - sukuriamos dvi klasės: bazinė (abstrakti) klasė Zmogus ir iš jos išvestinė (derived) klasė Studentas.
 - *v2.0* - sukuriama dokumentacija panaudojant Doxygen. Realizuojami Unit testai.
+- *v3.0* - sukurta klasė Vector, kuri pakeičia std::vector. Pilna os implementacija bei spartos palyginimas. Setup failo kūrimas.
 
 
 
