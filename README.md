@@ -132,12 +132,12 @@ Testavimo metu yra testuojamos šios programos operacijos:
 |-o3                     |   2.64526            |   4.66363               |
 
 
-**std::vector ir Vector psartos palyginimas**
+**std::vector ir Vector spartos palyginimas**
 |Įrašų skaičius          |Laikas std::vector    | Laikas Vector           |
 |------------------------|----------------------|-------------------------|
-|10,000                  |6.19009               |                         |
-|100,000                 |8.11821               |                         |
-|1,000,000               |21.9003               |                         |
+|10,000                  |6.19009               |5.96799                  |
+|100,000                 |8.11821               |7.95788                  |
+|1,000,000               |21.9003               |20.1865                  |
 
 
 
