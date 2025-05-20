@@ -79,7 +79,7 @@ int main()
             {
                 skaitymo_laikas = A.iv4(grupe, laiko_failas);
                 cout << "-----------------------------------------------------------------\n";
-                cout << "Atminties perskirtymo skaicius su Vector klase: " << grupe.getReallocationCount() << "\n";
+                cout << "Atminties perskirtymo skaicius su std::vector: " << grupe.getReallocationCount() << "\n";
 
             }
 

@@ -230,6 +230,7 @@ T* ManoVektorius<T>::end() {
 }
 
 **Atminties pertvarkymų (reallocation) skaičius naudojant std::vector ir Vector**
+![alt text](image-1.png)
 ![alt text](image.png)
 
 
