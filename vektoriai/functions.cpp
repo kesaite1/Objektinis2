@@ -101,3 +101,8 @@ void Disk(ofstream& report) {
     diskFile.close();
 }*/
 
+string getDesktopPath() {
+    char path[MAX_PATH];
+    SHGetFolderPathA(NULL, CSIDL_DESKTOP, NULL, 0, path);
+    return string(path);
+}

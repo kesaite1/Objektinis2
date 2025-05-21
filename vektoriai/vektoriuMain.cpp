@@ -194,8 +194,9 @@ int main()
                         }
                         if (isvestis == "f")
                         {
-                            ofstream sp("pazangus.txt");
-                            ofstream sn("nepazangus.txt");
+                            string desktopPath = getDesktopPath();
+                            ofstream sp(desktopPath + "\\pazangus.txt");
+                            ofstream sn(desktopPath + "\\nepazangus.txt");
 
                             sp << left << setw(15) << "Vardas" << left << setw(15) << "Pavarde" << left << setw(18) << "Galutinis (vid.)" << "Galutinis (med.)\n";
                             sp << "-----------------------------------------------------------------\n";

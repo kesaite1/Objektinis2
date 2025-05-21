@@ -15,6 +15,7 @@
 #include <cassert>
 #include <memory>
 #include <utility>
+#include <shlobj.h>
 
 using std::cout;
 using std::cin;
