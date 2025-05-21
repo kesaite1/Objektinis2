@@ -237,9 +237,10 @@ double Studentas::iv4(ManoVektorius <unique_ptr<Zmogus>>& grupe, ofstream& laiko
     catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }
     catch (const out_of_range& e) { cerr << "Klaida: " << e.what() << endl; }
 	}
+
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
     while (true) {
         try {
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
             cout << "Iveskite irasu skaiciu faile: ";
             getline(cin, userInput);
             stringstream ss(userInput);
