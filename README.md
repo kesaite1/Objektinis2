@@ -231,8 +231,9 @@ T* ManoVektorius<T>::end() {
 }
 
 **Atminties pertvarkymų (reallocation) skaičius naudojant std::vector ir Vector**
-![std::vector reallocations' count](image-1-1.png)
-![Vector class reallocations' count](image-2.png)
+![std::vector reallocations' count](https://github.com/user-attachments/assets/f20b24c1-9364-4ff8-aaf9-4867050f6c3a)
+![Vector class reallocations' count](https://github.com/user-attachments/assets/c204b115-2541-4df7-83f4-0a4c8682abca)
+
 
 
 **Programos veikimo laiko palyginimas su std::vector ir Vector klase**
