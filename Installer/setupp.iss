@@ -12,7 +12,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{57FF3924-40AC-4F4B-B690-9070E1657713}
+AppId={{BEE1CB20-A63D-4DBC-BEE5-556BFE1CF48B}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -31,7 +31,7 @@ ChangesAssociations=yes
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
-OutputBaseFilename=setup
+OutputBaseFilename=mysetup
 SolidCompression=yes
 WizardStyle=modern
 
@@ -42,7 +42,10 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\Dell\Documents\VU MIF\Objektinis programavimas\ObjProgramavimas2\Installer\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Dell\Documents\VU MIF\Objektinis programavimas\ObjProgramavimas2\Installer\libskaiciavimas.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Dell\Documents\VU MIF\Objektinis programavimas\ObjProgramavimas2\Installer\studentai10000.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Dell\Documents\VU MIF\Objektinis programavimas\ObjProgramavimas2\Installer\studentai100000.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Dell\Documents\VU MIF\Objektinis programavimas\ObjProgramavimas2\Installer\VectorProgram.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]

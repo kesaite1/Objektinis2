@@ -118,7 +118,7 @@ istream& operator>>(istream& is, Studentas& B) {
 typedef double (*VidurkisFn)(const int*, int);
 
 double Studentas::vidurkis() const {
-    HINSTANCE hDll = LoadLibraryA("skaiciavimas.dll");
+    HINSTANCE hDll = LoadLibraryA("libskaiciavimas.dll");
     if (!hDll) {
         std::cerr << "Nepavyko įkelti skaiciavimas.dll\n";
         return -1;
