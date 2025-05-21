@@ -183,20 +183,25 @@ FreeSpace    Name  Size
 - Disk SSD 239 GB
 
 **Testavimo išvados:**
+
 Remiantis programos operacijų laikais, efektyviausiai veikianti programa naudoja deque konteinerius, o mažiausiai efektyvi programa naudoja vector konteinerius. (Galimi testavimo neatitikimai, kurie priklauso nuo sistemos parametru).
 
 
 **Testvimo metodas programos metodu ir konstruktoriu testavimui**
+
 Metodas *test* ištestuoja programos metodų ir konstruktorių veiklą. Jei viskas veikia - ekrane išspausdinama žinutė: " Visi metodai ir Rule of Five konstruktoriai veikia teisingai", jei aptinkamos klaidos - programos veikla nutrūksta. 
 
 
 **Perdengti operatoriai**
-programoje naudoami perdengti operatoriai įvesčiai ir išvesčiai. Perdengti operatoriai leidžia iš naujo apibrėžti standartinių operatorių veiklą, kai jie yra naudojami su klasės objektais. Tai padaro class'ės naudojimą lengvesnį ir intuityvesnį. 
+
+Programoje naudojami perdengti operatoriai įvesčiai ir išvesčiai. Perdengti operatoriai leidžia iš naujo apibrėžti standartinių operatorių veiklą, kai jie yra naudojami su klasės objektais. Tai padaro class'ės naudojimą lengvesnį ir intuityvesnį. 
 
 **Unit testing**
+
 Realizuoti du Unit testai, kurie testuoja Studento klasės konstruktorius, getter'ius bei The Rule of Five.
 
 **Vector klasės metodų pvz.**
+
 *push_back metodas*
 template <typename T>
 void ManoVektorius<T>::push_back(const T& value) {
@@ -242,6 +247,8 @@ T* ManoVektorius<T>::end() {
 |10,000                  |6.19009               |21.7113                  |
 |100,000                 |8.11821               |33.5313                  |
 |1,000,000               |21.9003               |229.146                  |
+
+
 
 
 ![Duomenų įvedimo procesas](https://github.com/user-attachments/assets/26189234-f898-48fd-a30b-62bf3c1a61e5)
