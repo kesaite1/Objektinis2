@@ -6,6 +6,7 @@ project(Studentu_programa)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+add_subdirectory(dll)
 add_subdirectory(vektoriai)
 add_subdirectory(tests)
 

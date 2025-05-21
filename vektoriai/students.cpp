@@ -105,7 +105,7 @@ istream& operator>>(istream& is, Studentas& B) {
 }
 
 
-double Studentas::vidurkis() const
+/*double Studentas::vidurkis() const
 {
     double suma = 0;
    
@@ -114,6 +114,30 @@ double Studentas::vidurkis() const
         suma += pazymys;
     }
     return !hw.empty() ? suma / hw.size() : 0;
+}*/
+typedef double (*VidurkisFn)(const int*, int);
+
+double Studentas::vidurkis() const {
+    HINSTANCE hDll = LoadLibraryA("skaiciavimas.dll");
+    if (!hDll) {
+        std::cerr << "Nepavyko įkelti skaiciavimas.dll\n";
+        return -1;
+    }
+
+    VidurkisFn fn = (VidurkisFn)GetProcAddress(hDll, "vidurkis");
+    if (!fn) {
+        std::cerr << "Nepavyko rasti funkcijos vidurkis()\n";
+        FreeLibrary(hDll);
+        return -1;
+    }
+
+    const int* duomenys = hw.begin();  // assuming hw is ManoVektorius<int>
+    int kiek = static_cast<int>(hw.size());
+
+    double rezultatas = fn(duomenys, kiek);
+
+    FreeLibrary(hDll);
+    return rezultatas;
 }
 //-------------------------------------------------------------------------------------------
 double Studentas::mediana() const

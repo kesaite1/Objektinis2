@@ -12,3 +12,8 @@ target_include_directories(StudentLib PUBLIC
 add_executable(VectorProgram vektoriuMain.cpp)
 
 target_link_libraries(VectorProgram StudentLib)
+
+add_custom_command(TARGET VectorProgram POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:skaiciavimas>
+        $<TARGET_FILE_DIR:VectorProgram>)
