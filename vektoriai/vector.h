@@ -74,20 +74,20 @@ ManoVektorius<T>::ManoVektorius(const ManoVektorius<T>& other)
     : size_(other.size_), capacity_(other.capacity_) {
     data_ = new T[capacity_];
     for (size_t i = 0; i < size_; ++i) {
-        data_[i] = other.data_[i]; // T must be copyable
+        data_[i] = other.data_[i];
     }
 }
 
 template <typename T>
 ManoVektorius<T>& ManoVektorius<T>::operator=(const ManoVektorius<T>& other) {
-    if (this == &other) return *this; // self-assignment guard
+    if (this == &other) return *this;
 
     T* new_data = new T[other.capacity_];
     for (size_t i = 0; i < other.size_; ++i) {
         new_data[i] = other.data_[i];
     }
 
-    delete[] data_; // free old memory
+    delete[] data_; // istrinti sena atminti
     data_ = new_data;
     size_ = other.size_;
     capacity_ = other.capacity_;
