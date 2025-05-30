@@ -13,12 +13,14 @@ int main()
     ManoVektorius <unique_ptr<Zmogus>> pazangus;
     ManoVektorius <unique_ptr<Zmogus>> nepazangus;
     ManoVektorius <unique_ptr<Zmogus>> grupe;
-    int iv = 0, sorting = 0, strateg = 0 ;
+   // ManoVektorius <unique_ptr<Zmogus>> laikinasV;
+    //ManoVektorius <int> laikinas;
+    int iv = 0, sorting = 0, strateg = 0, reallocations = 0;
     string isvestis;
     Studentas  A;
     ManoVektorius <string> vardai = { "Emile", "Greta", "Haroldas", "Guste", "Paulius", "Aleksas", "Kristina", "Aidas", "Vasare", "Diana" };
     ManoVektorius <string> pavardes = { "Jonaitis", "Pavardaite", "Pavardenis", "Adomaitis", "Lapaite", "Apuokas", "Karalaite", "Nausediene" };
-
+    size_t last_capacity = grupe.capacity();
     random_device rd;  
     mt19937 gen(rd());
     auto programa_start = high_resolution_clock::now();
@@ -79,7 +81,8 @@ int main()
             {
                 skaitymo_laikas = A.iv4(grupe, laiko_failas);
                // cout << "-----------------------------------------------------------------\n";
-               // cout << "Atminties perskirtymo skaicius su std::vector: " << grupe.getReallocationCount() << "\n";
+               laiko_failas << "Atminties perskirtymo skaicius su vector: " << grupe.getReallocationCount() << "\n";
+               
 
             }
 
@@ -179,6 +182,17 @@ int main()
                     catch (const invalid_argument& e) { cerr << "Klaida: " << e.what() << endl; }
 					catch (const out_of_range& e) { cerr << "Klaida: " << e.what() << endl; }
                 }
+                //laikinas.push_back(10);
+                //laikinas.push_back(9);
+                /*for (int i = 0; i < 1000; ++i) {
+    auto zmog = make_unique<Studentas>("Vardas", "Pavarde", ManoVektorius<int>{9, 10}, 9); 
+    laikinasV.push_back(move(zmog));
+    if (grupe.capacity() != last_capacity) {
+        ++reallocations;
+        last_capacity = grupe.capacity();
+    }
+}
+laiko_failas << "Atminties perskirtymu skaicius su std::vector: " << reallocations << "\n";*/
                 while (true) {
                     try {
                         cout << "Pasirinkite, kur norite isvesti duomenis: i ekrana - e, i faila - f\n";

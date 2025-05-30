@@ -24,6 +24,11 @@
         Studentas(const string& vardas, const string& pavarde, const ManoVektorius<int>& hw, int egzaminas)
         : Zmogus(vardas, pavarde), hw(hw), egzaminas(egzaminas) {}
 
+        Studentas(const string& vardas, const string& pavarde, std::initializer_list<int> hw_list, int egzaminas)
+        : Zmogus(vardas, pavarde), egzaminas(egzaminas) {
+        for (int val : hw_list) hw.push_back(val);
+        }
+
         ~Studentas() {
             hw.clear();
             egzaminas = 0;
@@ -32,6 +37,7 @@
             vardas.clear();
             pavarde.clear();
         }
+        
         // Copy constructor and assignment operator
         Studentas(const Studentas& other) 
         :   Zmogus(other), egzaminas(other.egzaminas), hw(other.hw),

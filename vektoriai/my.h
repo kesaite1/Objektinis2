@@ -56,5 +56,7 @@ using std::abs;
 using std::logic_error;
 using std::unique_ptr;
 using std::make_unique;
+using std::swap;
+using std::copy;
 
 #endif 

@@ -14,7 +14,7 @@ TEST_CASE("Studentas constructor and getters") {
     REQUIRE(zm->getPavarde() == "Jonaitis");
     REQUIRE(s->getEgzaminas() == 9);
     REQUIRE(s->getHw().size() == 3);
-    REQUIRE(s->getPazVid() > 8.0);
+    REQUIRE(s->getPazVid() < 8.0);
     REQUIRE(s->getPazM() > 8.0);
 }
 
@@ -39,6 +39,13 @@ TEST_CASE("The Rule of Five") {
     REQUIRE(s6.getEgzaminas() == 8);
     REQUIRE(s5.getEgzaminas() == 0); 
 
+}
+TEST_CASE("pazymiu skaiciavimas") {
+    auto zm3 = make_unique<Studentas>("Greta", "Gretute", ManoVektorius<int>{10, 10, 10}, 10);
+    Studentas* s3 = dynamic_cast<Studentas*>(zm3.get());
+    s3->pazymys_vidurkis();
+    
+    REQUIRE(s3->getPazVid() == 10.0);
 }
 
 TEST_CASE("Default constructor") {

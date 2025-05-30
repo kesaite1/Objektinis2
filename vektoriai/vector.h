@@ -9,6 +9,8 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include "my.h"
+#include "code.h"
 
 template <typename T>
 class ManoVektorius {
@@ -25,11 +27,12 @@ class ManoVektorius {
     using const_iterator = const T*;
 
     ManoVektorius();
+    ManoVektorius(size_t n);
     ManoVektorius(std::initializer_list<T> list) {
     size_ = list.size();
     capacity_ = size_;
     data_ = new T[capacity_];
-    std::copy(list.begin(), list.end(), data_);
+    copy(list.begin(), list.end(), data_);
 }
 
 ManoVektorius(const ManoVektorius& other);
@@ -37,7 +40,6 @@ ManoVektorius& operator=(const ManoVektorius& other);
 ManoVektorius(ManoVektorius&& other) noexcept; //  move constructor
 ManoVektorius& operator=(ManoVektorius&& other) noexcept; //  move assignment
 ~ManoVektorius();
-
 
 size_t getReallocationCount() const {
     return realloc_count_;
@@ -49,14 +51,18 @@ size_t getReallocationCount() const {
     void reallocate(size_t new_capacity);
     void clear();
     void erase(size_t index);
+    void reserve(size_t new_cap);
 
     T& operator[](size_t index);
     const T& operator[](size_t index) const;
     T& at(size_t index);
+    const T& at(size_t index) const;
 
     size_t size() const noexcept;
     size_t capacity() const noexcept;
     bool empty() const noexcept;
+    void resize(size_t new_size);
+    void shrink_to_fit();
    
     const T* end() const;
     const T* begin() const;
@@ -64,10 +70,22 @@ size_t getReallocationCount() const {
     T* end();
     T& back();
     const T& back() const;
+    void insert(size_t index, const T& value);
+    T& front(); 
+    const T& front() const; 
+    void swap(ManoVektorius<T>& other);
 };
 
 template <typename T>
 ManoVektorius<T>::ManoVektorius() : data_(nullptr), size_(0), capacity_(0) {}
+
+template <typename T>
+ManoVektorius<T>::ManoVektorius(size_t n) 
+    : data_(static_cast<T*>(::operator new[](n * sizeof(T)))), size_(n), capacity_(n) 
+{
+    for (std::size_t i = 0; i < n; ++i)
+        new (&data_[i]) T();  // default-initialize
+}
 
 template <typename T>
 ManoVektorius<T>::ManoVektorius(const ManoVektorius<T>& other)
@@ -94,7 +112,6 @@ ManoVektorius<T>& ManoVektorius<T>::operator=(const ManoVektorius<T>& other) {
 
     return *this;
 }
-
 
 template <typename T>
 ManoVektorius<T>::ManoVektorius(ManoVektorius<T>&& other) noexcept
@@ -154,7 +171,7 @@ template <typename T>
 void ManoVektorius<T>::reallocate(size_t new_capacity) {
     T* new_data = new T[new_capacity];
     for (size_t i = 0; i < size_; ++i)
-        new_data[i] = std::move(data_[i]);
+        new_data[i] = move(data_[i]);
     delete[] data_;
     data_ = new_data;
     capacity_ = new_capacity;
@@ -163,6 +180,9 @@ void ManoVektorius<T>::reallocate(size_t new_capacity) {
 
 template <typename T>
 void ManoVektorius<T>::clear() {
+    for (size_t i = 0; i < size_; ++i) {
+        data_[i].~T();  // iskviecia destruktoriu
+    }
     size_ = 0;
 }
 
@@ -174,6 +194,14 @@ void ManoVektorius<T>::erase(std::size_t index) {
     }
     --size_;
 }
+
+template <typename T>
+void ManoVektorius<T>::reserve(size_t new_cap) {
+    if (new_cap > capacity_) {
+        reallocate(new_cap);
+    }
+}
+
 //-----------------------------------------------------
 template <typename T>
 T& ManoVektorius<T>::operator[](size_t index) {
@@ -186,10 +214,30 @@ const T& ManoVektorius<T>::operator[](size_t index) const {
 }
 
 template <typename T>
+bool operator==(const ManoVektorius<T>& lhs, const ManoVektorius<T>& rhs) {
+    if (lhs.size() != rhs.size()) return false;
+    for (size_t i = 0; i < lhs.size(); ++i)
+        if (lhs[i] != rhs[i]) return false;
+    return true;
+}
+
+template <typename T>
+bool operator!=(const ManoVektorius<T>& lhs, const ManoVektorius<T>& rhs) {
+    return !(lhs == rhs);
+}
+
+template <typename T>
 T& ManoVektorius<T>::at(size_t index) {
-    if (index >= size_) throw std::out_of_range("Index out of range");
+    if (index >= size_) throw out_of_range("Index out of range");
     return data_[index];
 }
+
+template <typename T>
+const T& ManoVektorius<T>::at(size_t index) const {
+    if (index >= size_) throw out_of_range("Index out of range");
+    return data_[index];
+}
+
 //-----------------------------------------------------
 template <typename T>
 size_t ManoVektorius<T>::size() const noexcept {
@@ -205,6 +253,36 @@ template <typename T>
 bool ManoVektorius<T>::empty() const noexcept {
     return size_ == 0;
 }
+
+template <typename T>
+void ManoVektorius<T>::resize(size_t new_size) {
+    if (new_size > capacity_) {
+        reserve(new_size);
+    }
+    if (new_size > size_) {
+        for (size_t i = size_; i < new_size; ++i)
+            data_[i] = T(); 
+    }
+    size_ = new_size;
+}
+
+template <typename T>
+void ManoVektorius<T>::shrink_to_fit() {
+    if (capacity_ == size_) return;
+
+    T* new_array = static_cast<T*>(::operator new[](size_ * sizeof(T)));
+
+    for (size_t i = 0; i < size_; ++i) {
+        new (&new_array[i]) T(move(data_[i]));
+        data_[i].~T();
+    }
+
+    ::operator delete[](data_);
+    data_ = new_array;
+    capacity_ = size_;
+}
+
+
 //-----------------------------------------------------
 template <typename T>
 T& ManoVektorius<T>::back() {
@@ -234,6 +312,35 @@ const T* ManoVektorius<T>::begin() const {
 template <typename T>
 const T* ManoVektorius<T>::end() const {
     return data_ + size_;
+}
+
+template <typename T>
+void ManoVektorius<T>::insert(size_t index, const T& value) {
+    if (index > size_) throw out_of_range("Indeksas uz ribu");
+    if (size_ == capacity_) reallocate(capacity_ == 0 ? 1 : capacity_ * 2);
+    for (size_t i = size_; i > index; --i) {
+        data_[i] = move(data_[i - 1]);
+    }
+    data_[index] = value;
+    ++size_;
+}
+
+template <typename T>
+T& ManoVektorius<T>::front() {
+    return data_[0];
+}
+
+template <typename T>
+const T& ManoVektorius<T>::front() const {
+    return data_[0];
+}
+
+template <typename T>
+void ManoVektorius<T>::swap(ManoVektorius<T>& other) {
+    swap(data_, other.data_);
+    swap(size_, other.size_);
+    swap(capacity_, other.capacity_);
+    swap(realloc_count_, other.realloc_count_);
 }
 
  #endif
