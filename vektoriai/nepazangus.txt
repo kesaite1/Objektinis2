@@ -1,6 +1,0 @@
-Vardas         Pavarde        Galutinis (vid.)  Galutinis (med.)
------------------------------------------------------------------
-Vardas8        Pavarde8       2.66              2.76
-Vardas1        Pavarde1       2.84              3.18
-Vardas2        Pavarde2       4.13              4.12
-Vardas3        Pavarde3       4.94              4.93

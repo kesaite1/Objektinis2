@@ -1,0 +1,287 @@
+\doxysection{Mano\+Vektorius\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_mano_vektorius}{}\label{class_mano_vektorius}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+
+
+{\ttfamily \#include $<$vector.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_mano_vektorius_a066abc602c9dc6ed0d31831781a1c653}{value\+\_\+type}} = T
+\item 
+using \mbox{\hyperlink{class_mano_vektorius_a38e5432f043c58de08c84e298f40828f}{iterator}} = T\texorpdfstring{$\ast$}{*}
+\item 
+using \mbox{\hyperlink{class_mano_vektorius_a437a6a929e2f19339bf61b9bf3e991be}{const\+\_\+iterator}} = const T\texorpdfstring{$\ast$}{*}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}{Mano\+Vektorius}} ()
+\item 
+\mbox{\hyperlink{class_mano_vektorius_afbe170c91948d9f970128ec3b37640cd}{Mano\+Vektorius}} (std\+::initializer\+\_\+list$<$ T $>$ list)
+\item 
+\mbox{\hyperlink{class_mano_vektorius_a32a8cb0625a73fb1fcd1bbae80646c88}{Mano\+Vektorius}} (const \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}} \&other)
+\item 
+\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}} \& \mbox{\hyperlink{class_mano_vektorius_a34745bf3334e34627ea052639497f5e9}{operator=}} (const \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}} \&other)
+\item 
+\mbox{\hyperlink{class_mano_vektorius_a2d9d7bb07c96478ce1e57d480ecf6ee9}{Mano\+Vektorius}} (\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}} \&\&other) noexcept
+\item 
+\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}} \& \mbox{\hyperlink{class_mano_vektorius_a00735238ac4ef474ccc4ed0896d704c4}{operator=}} (\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}} \&\&other) noexcept
+\item 
+\mbox{\hyperlink{class_mano_vektorius_aa8915fab183335d6d4f941d65ebddfdb}{\texorpdfstring{$\sim$}{\string~}\+Mano\+Vektorius}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{class_mano_vektorius_a70f644cb88a6e353dd5c341710dc83d8}{get\+Reallocation\+Count}} () const
+\item 
+void \mbox{\hyperlink{class_mano_vektorius_a56b255a5d5a4d2596eb0a1c28ff13b17}{push\+\_\+back}} (const T \&value)
+\item 
+void \mbox{\hyperlink{class_mano_vektorius_a99bb9217d729b0ef1fcdd743eb1545ca}{push\+\_\+back}} (T \&\&value)
+\item 
+void \mbox{\hyperlink{class_mano_vektorius_a77339162a47e0ae44a801e53f59fa44f}{pop\+\_\+back}} ()
+\item 
+void \mbox{\hyperlink{class_mano_vektorius_ac1b802dbc4033cf202ded8a2dfe7aad4}{reallocate}} (size\+\_\+t new\+\_\+capacity)
+\item 
+void \mbox{\hyperlink{class_mano_vektorius_a9c316e76bbc0c1ea7e35f51e6c42dd35}{clear}} ()
+\item 
+void \mbox{\hyperlink{class_mano_vektorius_ad0c151354e49f17728cbec74bfa28b81}{erase}} (size\+\_\+t index)
+\item 
+T \& \mbox{\hyperlink{class_mano_vektorius_adbf4ed9ab8db1bf0ca7bd3c00bd2baf3}{operator\mbox{[}$\,$\mbox{]}}} (size\+\_\+t index)
+\item 
+const T \& \mbox{\hyperlink{class_mano_vektorius_a7544e5c4c99b2d4c4a922ceaf72fa549}{operator\mbox{[}$\,$\mbox{]}}} (size\+\_\+t index) const
+\item 
+T \& \mbox{\hyperlink{class_mano_vektorius_a63f6c157e106b7a27899a21d92e7276d}{at}} (size\+\_\+t index)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_mano_vektorius_aed795bb8b281913deead2b15e767fa94}{size}} () const noexcept
+\item 
+size\+\_\+t \mbox{\hyperlink{class_mano_vektorius_a8bd592c169dfc90f9ec6a6e90f6c44fe}{capacity}} () const noexcept
+\item 
+bool \mbox{\hyperlink{class_mano_vektorius_ae3c4310c150d760f4e096c3ae96e5ccb}{empty}} () const noexcept
+\item 
+const T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_mano_vektorius_ac0f1d460063a2ae6f9dff789db2764b8}{end}} () const
+\item 
+const T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_mano_vektorius_ac9ea092f74b982a014a8495b2e5156dc}{begin}} () const
+\item 
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_mano_vektorius_a9f38da3696b129ff177e96402e926554}{begin}} ()
+\item 
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_mano_vektorius_a9196170983007ad53717147c283b5368}{end}} ()
+\item 
+T \& \mbox{\hyperlink{class_mano_vektorius_ae106c95edb0554ea22a433462ec537ac}{back}} ()
+\item 
+const T \& \mbox{\hyperlink{class_mano_vektorius_aca62c9be973105069e44c261ce0ce41e}{back}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_mano_vektorius_a437a6a929e2f19339bf61b9bf3e991be}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!const\_iterator@{const\_iterator}}
+\index{const\_iterator@{const\_iterator}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{const\_iterator}{const\_iterator}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a437a6a929e2f19339bf61b9bf3e991be} 
+template$<$typename T$>$ \\
+using \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::const\+\_\+iterator = const T\texorpdfstring{$\ast$}{*}}
+
+\Hypertarget{class_mano_vektorius_a38e5432f043c58de08c84e298f40828f}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!iterator@{iterator}}
+\index{iterator@{iterator}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{iterator}{iterator}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a38e5432f043c58de08c84e298f40828f} 
+template$<$typename T$>$ \\
+using \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::iterator = T\texorpdfstring{$\ast$}{*}}
+
+\Hypertarget{class_mano_vektorius_a066abc602c9dc6ed0d31831781a1c653}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!value\_type@{value\_type}}
+\index{value\_type@{value\_type}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{value\_type}{value\_type}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a066abc602c9dc6ed0d31831781a1c653} 
+template$<$typename T$>$ \\
+using \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::value\+\_\+type = T}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!ManoVektorius@{ManoVektorius}}
+\index{ManoVektorius@{ManoVektorius}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{ManoVektorius()}{ManoVektorius()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a6beb945a903492d062fcb7727d1f96bb} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\mbox{\hyperlink{class_mano_vektorius}{\+::\+Mano\+Vektorius}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_afbe170c91948d9f970128ec3b37640cd}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!ManoVektorius@{ManoVektorius}}
+\index{ManoVektorius@{ManoVektorius}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{ManoVektorius()}{ManoVektorius()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_afbe170c91948d9f970128ec3b37640cd} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\mbox{\hyperlink{class_mano_vektorius}{\+::\+Mano\+Vektorius}} (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ T $>$}]{list}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_mano_vektorius_a32a8cb0625a73fb1fcd1bbae80646c88}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!ManoVektorius@{ManoVektorius}}
+\index{ManoVektorius@{ManoVektorius}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{ManoVektorius()}{ManoVektorius()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a32a8cb0625a73fb1fcd1bbae80646c88} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\mbox{\hyperlink{class_mano_vektorius}{\+::\+Mano\+Vektorius}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_a2d9d7bb07c96478ce1e57d480ecf6ee9}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!ManoVektorius@{ManoVektorius}}
+\index{ManoVektorius@{ManoVektorius}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{ManoVektorius()}{ManoVektorius()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a2d9d7bb07c96478ce1e57d480ecf6ee9} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\mbox{\hyperlink{class_mano_vektorius}{\+::\+Mano\+Vektorius}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$ \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\Hypertarget{class_mano_vektorius_aa8915fab183335d6d4f941d65ebddfdb}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!````~ManoVektorius@{\texorpdfstring{$\sim$}{\string~}ManoVektorius}}
+\index{````~ManoVektorius@{\texorpdfstring{$\sim$}{\string~}ManoVektorius}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ManoVektorius()}{\string~ManoVektorius()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_aa8915fab183335d6d4f941d65ebddfdb} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_mano_vektorius_a63f6c157e106b7a27899a21d92e7276d}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!at@{at}}
+\index{at@{at}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a63f6c157e106b7a27899a21d92e7276d} 
+template$<$typename T$>$ \\
+T \& \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::at (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_ae106c95edb0554ea22a433462ec537ac}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!back@{back}}
+\index{back@{back}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{back()}{back()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_ae106c95edb0554ea22a433462ec537ac} 
+template$<$typename T$>$ \\
+T \& \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::back (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_aca62c9be973105069e44c261ce0ce41e}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!back@{back}}
+\index{back@{back}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{back()}{back()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_aca62c9be973105069e44c261ce0ce41e} 
+template$<$typename T$>$ \\
+const T \& \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::back (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_mano_vektorius_a9f38da3696b129ff177e96402e926554}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!begin@{begin}}
+\index{begin@{begin}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a9f38da3696b129ff177e96402e926554} 
+template$<$typename T$>$ \\
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_ac9ea092f74b982a014a8495b2e5156dc}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!begin@{begin}}
+\index{begin@{begin}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_ac9ea092f74b982a014a8495b2e5156dc} 
+template$<$typename T$>$ \\
+const T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_mano_vektorius_a8bd592c169dfc90f9ec6a6e90f6c44fe}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!capacity@{capacity}}
+\index{capacity@{capacity}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{capacity()}{capacity()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a8bd592c169dfc90f9ec6a6e90f6c44fe} 
+template$<$typename T$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::capacity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\Hypertarget{class_mano_vektorius_a9c316e76bbc0c1ea7e35f51e6c42dd35}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!clear@{clear}}
+\index{clear@{clear}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a9c316e76bbc0c1ea7e35f51e6c42dd35} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_ae3c4310c150d760f4e096c3ae96e5ccb}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!empty@{empty}}
+\index{empty@{empty}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_ae3c4310c150d760f4e096c3ae96e5ccb} 
+template$<$typename T$>$ \\
+bool \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\Hypertarget{class_mano_vektorius_a9196170983007ad53717147c283b5368}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!end@{end}}
+\index{end@{end}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a9196170983007ad53717147c283b5368} 
+template$<$typename T$>$ \\
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_ac0f1d460063a2ae6f9dff789db2764b8}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!end@{end}}
+\index{end@{end}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_ac0f1d460063a2ae6f9dff789db2764b8} 
+template$<$typename T$>$ \\
+const T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_mano_vektorius_ad0c151354e49f17728cbec74bfa28b81}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!erase@{erase}}
+\index{erase@{erase}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_ad0c151354e49f17728cbec74bfa28b81} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::erase (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_a70f644cb88a6e353dd5c341710dc83d8}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!getReallocationCount@{getReallocationCount}}
+\index{getReallocationCount@{getReallocationCount}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getReallocationCount()}{getReallocationCount()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a70f644cb88a6e353dd5c341710dc83d8} 
+template$<$typename T$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::get\+Reallocation\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_mano_vektorius_a34745bf3334e34627ea052639497f5e9}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a34745bf3334e34627ea052639497f5e9} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$ \& \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$ \&}]{other}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_a00735238ac4ef474ccc4ed0896d704c4}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a00735238ac4ef474ccc4ed0896d704c4} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$ \& \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$ \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\Hypertarget{class_mano_vektorius_adbf4ed9ab8db1bf0ca7bd3c00bd2baf3}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_adbf4ed9ab8db1bf0ca7bd3c00bd2baf3} 
+template$<$typename T$>$ \\
+T \& \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_a7544e5c4c99b2d4c4a922ceaf72fa549}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a7544e5c4c99b2d4c4a922ceaf72fa549} 
+template$<$typename T$>$ \\
+const T \& \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_mano_vektorius_a77339162a47e0ae44a801e53f59fa44f}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!pop\_back@{pop\_back}}
+\index{pop\_back@{pop\_back}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{pop\_back()}{pop\_back()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a77339162a47e0ae44a801e53f59fa44f} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::pop\+\_\+back (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_a56b255a5d5a4d2596eb0a1c28ff13b17}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a56b255a5d5a4d2596eb0a1c28ff13b17} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{const T \&}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_a99bb9217d729b0ef1fcdd743eb1545ca}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_a99bb9217d729b0ef1fcdd743eb1545ca} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{T \&\&}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_ac1b802dbc4033cf202ded8a2dfe7aad4}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!reallocate@{reallocate}}
+\index{reallocate@{reallocate}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{reallocate()}{reallocate()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_ac1b802dbc4033cf202ded8a2dfe7aad4} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::reallocate (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{new\+\_\+capacity}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_mano_vektorius_aed795bb8b281913deead2b15e767fa94}\index{ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}!size@{size}}
+\index{size@{size}!ManoVektorius$<$ T $>$@{ManoVektorius$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{class_mano_vektorius_aed795bb8b281913deead2b15e767fa94} 
+template$<$typename T$>$ \\
+size\+\_\+t \mbox{\hyperlink{class_mano_vektorius}{Mano\+Vektorius}}$<$ T $>$\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vektoriai/\mbox{\hyperlink{vector_8h}{vector.\+h}}\end{DoxyCompactItemize}
